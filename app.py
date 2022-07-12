@@ -1,15 +1,22 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
+
+from pymongo import MongoClient
+client = MongoClient('mongodb+srv://test:sparta@cluster0.u2fmd2o.mongodb.net/?retryWrites=true&w=majority ')
+db = client.dbsparta
 
 
 app = Flask(__name__)
 
-@app.route('/')
+
+@app.route('/main')
 def index():
     return render_template("song.html")
 
 
 @app.route('/detail', methods=["post"])
-def detail():
+def project_detail_post():
+
+    return jsonify({'msg':'작성완료'})
     return render_template("detail.html")
 
 
