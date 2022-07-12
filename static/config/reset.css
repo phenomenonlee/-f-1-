@@ -129,3 +129,7 @@ a {
 a:hover{
     color: inherit;
 }
+
+* {
+    font-family: 'Nanum Pen Script', cursive;
+}

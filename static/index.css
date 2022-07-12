@@ -10,10 +10,6 @@
 /*login*/
 @import "login.css";
 
-* {
-    font-family: 'Nanum Pen Script', cursive;
-}
-
 .mypic-box {
     display: flex;
     justify-content: center;

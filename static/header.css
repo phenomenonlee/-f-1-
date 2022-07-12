@@ -26,7 +26,6 @@
     margin-top: 10px;
 }
 
-.join_btn,
 .login_btn,
 .myprofile_btn {
     border-radius: 5px;
@@ -37,10 +36,12 @@
 
     height: 30px;
     width: 100%;
+
+    margin-right: 10px;
 }
 
-.logout_btn{
-        border-radius: 5px;
+.logout_btn {
+    border-radius: 5px;
     border-width: medium;
 
     background-color: white;
@@ -49,9 +50,4 @@
     height: 30px;
     width: 92px;
 }
-
-.myprofile_btn {
-    margin-right: 10px;
-}
-
 

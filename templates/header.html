@@ -1,3 +1,20 @@
+<script>
+    $(document).ready(function () {
+        check_cookie()
+    });
+
+    function check_cookie() {
+        let cookie = $.cookie('mytoken')
+        if (cookie) {
+            $('#login').css("display", "none");
+        } else {
+            $('#logout').css("display", "none");
+            $('#my').css("display", "none");
+        }
+    }
+</script>
+
+
 <nav class="nav">
     <ul class="nav_list">
 
@@ -9,20 +26,20 @@
 
         <div class="nav_list_buttons">
 
-            <li class="login_btn nav_list_btn">
+            <li class="login_btn nav_list_btn" id="login">
                 <a href="/login">
                     <button class="login_btn">Login</button>
                 </a>
             </li>
 
-            <li class="logout_btn nav_list_btn">
+            <li class="logout_btn nav_list_btn" id="logout">
                 <a href="/">
                     <button onclick="logout()" class="logout_btn">Log out</button>
                 </a>
 
             </li>
 
-            <li class="myprofile_btn nav_list_btn">
+            <li class="myprofile_btn nav_list_btn" id="my">
                 <a href="mypage">
                     <button class="myprofile_btn">Mypage</button>
                 </a>
