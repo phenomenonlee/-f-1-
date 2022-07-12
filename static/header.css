@@ -16,12 +16,6 @@
     margin-left: 10px;
 }
 
-a {
-    color: inherit;
-}
-a:hover{
-    color: inherit;
-}
 
 .nav_list_buttons {
     display: flex;
@@ -43,6 +37,17 @@ a:hover{
 
     height: 30px;
     width: 100%;
+}
+
+.logout_btn{
+        border-radius: 5px;
+    border-width: medium;
+
+    background-color: white;
+    font-weight: bold;
+
+    height: 30px;
+    width: 92px;
 }
 
 .myprofile_btn {

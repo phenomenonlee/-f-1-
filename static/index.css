@@ -7,10 +7,12 @@
 /*footer*/
 @import "footer.css";
 
+/*login*/
+@import "login.css";
+
 * {
     font-family: 'Nanum Pen Script', cursive;
 }
-
 
 .mypic-box {
     display: flex;
