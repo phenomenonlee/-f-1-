@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <link href="../static/index.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/190c91686f.js" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            sharing()
+        });
+
+        function sharing() {
+            $('#sharing').css("display", "none");
+        }
+
+        function show_sharing() {
+            $('#sharing').css("display", "block");
+
+        }
+
+        function sharing_val() {
+            let song_title = $('#title').val()
+            let song_artist = $('#artist').val()
+            let song_des = $('#des').val()
+            let song_genre = $('#genre').val()
+
+            $.ajax({
+                type: 'POST',
+                url: '/detail',
+                data: {
+                    song_title_give: song_title,
+                    song_artist_give: song_artist,
+                    song_des_give: song_des,
+                    song_genre_give: song_genre,
+                },
+                success: function (response) {
+                    window.location.reload()
+                }
+            });
+        }
+
+    </script>
+
+
+</head>
+<body>
+<div id="header">
+
+</div>
+
+<main>
+    <div class="mypic-box">
+        <div class="mypic">
+            <button onclick="show_sharing()" type="button" class="sharing_btn">Sharing</button>
+        </div>
+    </div>
+
+    <div id="sharing" class="mypost">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="title" placeholder="Artist">
+            <label for="floatingInput">Title</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="artist" placeholder="Title">
+            <label for="floatingInput">Artist</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="des" placeholder="genre">
+            <label for="floatingInput">Des</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="genre" placeholder="genre">
+            <label for="floatingInput">Genre</label>
+        </div>
+        <div class="btn_box">
+            <button type="button" class="mypost_sharing_btn" onclick="sharing_val()">Sharing</button>
+            <button type="button" class="close_btn" onclick="sharing()">Close</button>
+        </div>
+    </div>
+
+    {% for row in song_infos %}
+        {% set title = row.song_title %}
+        {% set artist = row.song_artist %}
+        {% set des = row.song_des %}
+        {% set genre = row.song_genre %}
+        <div class="song_infos">
+            <div>{{ title }}</div>
+            <div>{{ artist }}</div>
+            <div>{{ des }}</div>
+            <div>{{ genre }}</div>
+        </div>
+    {% endfor %}
+
+</main>
+
+<div id="footer">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#header").load("/header");  // 원하는 파일 경로를 삽입하면 된다
+        $("#footer").load("/footer");  // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+    });
+</script>
+
+</body>
+</html>

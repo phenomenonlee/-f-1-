@@ -1,0 +1,52 @@
+.nav_list {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fa-soundcloud {
+    font-size: 50px;
+}
+
+.song_c {
+    font-size: 25px;
+}
+
+.home_btn {
+    margin-left: 10px;
+}
+
+a {
+    color: inherit;
+}
+a:hover{
+    color: inherit;
+}
+
+.nav_list_buttons {
+    display: flex;
+}
+
+.nav_list_btn {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.join_btn,
+.login_btn,
+.myprofile_btn {
+    border-radius: 5px;
+    border-width: medium;
+
+    background-color: white;
+    font-weight: bold;
+
+    height: 30px;
+    width: 100%;
+}
+
+.myprofile_btn {
+    margin-right: 10px;
+}
+
+
