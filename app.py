@@ -1,23 +1,35 @@
 from flask import Flask, render_template, request, jsonify
+app = Flask(__name__)
 
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://test:sparta@cluster0.u2fmd2o.mongodb.net/?retryWrites=true&w=majority ')
+client = MongoClient('mongodb+srv://test:sparta@cluster0.tef1s.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
 
-app = Flask(__name__)
 
 
-@app.route('/main')
+
+@app.route('/')
 def index():
-    return render_template("song.html")
-
-
-@app.route('/detail', methods=["post"])
-def project_detail_post():
-
-    return jsonify({'msg':'작성완료'})
     return render_template("detail.html")
+
+
+@app.route("/info", methods=["POST"])
+def ripple_post():
+    ripple_receive = request.form['ripple_give']
+
+    doc = {
+        'ripple':ripple_receive,
+    }
+    db.info.insert_one(doc)
+
+    return jsonify({'msg': '작성 완료!'})
+
+
+# @app.route("/info", methods=["GET"])
+# def ripple_post():
+#     info_list = list(db.info.find({},{'_id':False}))
+#     return jsonify({'info':info_list})
 
 
 if __name__ == '__main__':

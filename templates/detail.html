@@ -69,52 +69,59 @@
         }
     </style>
     <script>
-        function show_comment() {
-            $.ajax({
-                type: "GET",
-                url: "/homework",
-                data: {},
-                success: function (response) {
-                    let rows = response['orders']
-                    for (let i = 0; i < rows.length; i++) {
-                        let nickname = rows[i]['nickname']
-                        let title = rows[i]['title']
-                        let comment = rows[i]['comment']
-                        let img = rows[i]['img']
-
-                        let temp_html = `<div class="content">
-    <img class="picture-box" src=${img} alt="...">
-    <div class="card">
-      <div class="card-header">
-        ${nickname}
-      </div>
-      <div class="card-body">
-        <blockquote class="blockquote mb-0">
-          <p>${title}</p>
-          <footer class="blockquote-footer"> <cite title="Source Title">${comment}</cite></footer>
-        </blockquote>
-      </div>
-    </div>
-  </div>`
-                        $('#comment-list').append(temp_html)
-                    }
-                }
-            });
-        }
-
         function save_ripple() {
-            let address = $('#ripple').val()
+            let ripple = $('#ripple').val()
 
             $.ajax({
                 type: 'POST',
-                url: '/main',
-                data: { ripple_give: ripple},
+                url: '/info',
+                data: {ripple_give: ripple},
                 success: function (response) {
                     alert(response['msg'])
                     window.location.reload()
                 }
             });
         }
+
+
+        $(document).ready(function () {
+            show_info();
+        });
+
+        function show_info() {
+            $.ajax({
+                type: "GET",
+                url: "/info",
+                data: {},
+                success: function (response) {
+                    let rows = response['info']
+                    for (let i = 0; i < rows.length; i++) {
+                        let _id = rows[i]['_id']
+                        let title = rows[i]['title']
+                        let desc = rows[i]['desc']
+                        let url = rows[i]['url']
+
+                        let temp_html = `<div class="content">
+    <img class="picture-box" src=${url} alt="...">
+    <div class="card">
+      <div class="card-header">
+        ${_id}
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p>${title}</p>
+          <footer class="blockquote-footer"> <cite title="Source Title">${desc}</cite></footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>`
+                        $('#cards-box').append(temp_html)
+                    }
+                }
+            });
+        }
+
+
     </script>
 
 </head>
@@ -129,7 +136,7 @@
 </div>
 
 <center>
-    <div class="content">
+    <div class="content" id="cards-box">
         <img class="picture-box"
              src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEwMTFfMjYz%2FMDAxNjAyMzk5NzM3MDM1._npBKrGz7tCIqNLu6tqLIx3qOkdEXstUil1FLxgc2Ysg.wbgSK0UHJ-n8EVo23Av-VxdeZV2DTJcp7agm3f_t8sMg.JPEG.iii007007%2F9a5d0c1fb046a0d45615d609f3b8d047.jpg&amp;type=sc960_832"
              alt="...">
