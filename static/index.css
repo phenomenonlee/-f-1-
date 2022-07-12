@@ -1,0 +1,71 @@
+/*Config*/
+@import "../static/config/reset.css";
+
+/*header*/
+@import "header.css";
+
+/*footer*/
+@import "footer.css";
+
+* {
+    font-family: 'Gowun Dodum', sans-serif;
+}
+
+.myPost{
+            background-color: white;
+            max-width: 1000px;
+            width: 95%;
+
+            border : 2px gray;
+            margin: 20px auto 0px auto;
+            padding: 10px;
+            box-shadow: 0px 0px 3px 0px gray;
+
+            display: none;
+
+        }
+.shareButton{
+            float: right;
+            position: relative;
+            bottom: 40px;
+
+
+        }
+.cards>.picture-box{
+
+            background-color: green;
+            max-width: 200px;
+            max-height: 200px;
+            float :left;
+        }
+.cards>.card{
+            max-width: 1000px;
+
+            height: 200px;
+
+        }
+.cards{
+
+
+            height: 200px;
+            max-width: 1000px;
+            width: 95%;
+
+
+            margin: 50px auto 0px auto;
+
+
+
+        }
+
+
+.page-box{
+    min-width: 300px;
+    max-width: 1000px;
+
+    margin: 10px auto 0px auto;
+
+}
+.pagination{
+    float : right;
+}
