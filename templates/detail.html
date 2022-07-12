@@ -71,7 +71,7 @@
     <script>
         function save_ripple() {
             let ripple = $('#ripple').val()
-
+            console.log(ripple)
             $.ajax({
                 type: 'POST',
                 url: '/info',
@@ -152,7 +152,7 @@
             </div>
         </div>
     </div>
-    <textarea class="textarea" placeholder="감상평을 작성해 주세요"></textarea>
+    <textarea class="textarea" id="ripple" placeholder="감상평을 작성해 주세요"></textarea>
     <div class="button">
         <button onclick="save_ripple()" class="button is-primary">작성하기</button>
     </div>
