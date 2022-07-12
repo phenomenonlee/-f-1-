@@ -4,24 +4,9 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/')
-def main():
-    return render_template("song.html")
-
-
-@app.route('/mypage')
-def mypage():
-    return render_template("mypage.html")
-
-
-@app.route('/login')
-def login():
-    return render_template("login.html")
-
-
-@app.route('/signup')
-def signup():
-    return render_template("signup.html")
+@app.route('/detail', methods=["post"])
+def detail():
+    return render_template("detail.html")
 
 
 if __name__ == '__main__':

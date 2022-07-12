@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <title>music comment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&amp;display=swap" rel="stylesheet">
+  <title>Title</title>
+
+  <style>
+    * {
+      font-family: 'Gowun Dodum', sans-serif;
+    }
+    .mainImage{
+
+      max-width: 1000px;
+      margin: 0 auto 0 auto;
+    }
+    .content{
+      border-style: solid;
+      border-color: gray;
+      max-width: 1000px;
+    }
+
+    .picture-box{
+
+    }
+    .card{
+      margin-top: 20px;
+      max-width: 800px;
+    }
+    .main{
+      border-style: double;
+      color: black;
+
+      width: 150px;
+      font-size: 30px;
+
+    }
+
+    .comments{
+      min-width: 500px;
+      max-width: 800px;
+    }
+  </style>
+<script>
+    function save_ripple(){
+    let nickname = $("#nickname").val()
+    let ripple = $("#ripple").val()
+
+$.ajax({
+type: 'POST',
+url: '/detail',
+data: {nickname_give: nickname, ripple_give: ripple},
+success: function (response) {
+alert(response['msg'])
+window.location.reload()
+}
+})
+}
+</script>
+</head>
+<body>
+
+<div class="mainImage">
+
+  <a class="main" href="https://www.naver.com/" style="text-decoration: black">
+
+    Song &amp; C
+  </a>
+</div>
+
+<center>
+  <div class="content">
+    <img class="picture-box" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEwMTFfMjYz%2FMDAxNjAyMzk5NzM3MDM1._npBKrGz7tCIqNLu6tqLIx3qOkdEXstUil1FLxgc2Ysg.wbgSK0UHJ-n8EVo23Av-VxdeZV2DTJcp7agm3f_t8sMg.JPEG.iii007007%2F9a5d0c1fb046a0d45615d609f3b8d047.jpg&amp;type=sc960_832" alt="...">
+    <div class="card">
+      <div class="card-header">
+        id
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p>노래 제목</p>
+          <footer class="blockquote-footer"> <cite title="Source Title">이 노래는 최고에요!</cite></footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+    <div class="comments">
+        <label for="exampleFormControlInput1" class="form-label">닉네임</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Song & C">
+    </div>
+    <div class="comments">
+        <label for="exampleFormControlTextarea1" class="form-label">리플 작성</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <button onclick="save_ripple()" type="button" class="btn btn-primary">작성하기</button>
+
+  <div class="comments">
+    <div class="card text-white bg-secondary mb-3">
+    <div class="card-header">id</div>
+    <div class="card-body">
+
+      <p class="card-text">좋은 노래 추천해 주셔서 감사해요!</p>
+    </div>
+    </div>
+  </div>
+
+</center>
+
+
+</body></html>
