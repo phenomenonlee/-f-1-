@@ -10,6 +10,7 @@
 
 .song_c {
     font-size: 25px;
+    font-weight: bold;
 }
 
 .home_btn {
@@ -48,6 +49,6 @@
     font-weight: bold;
 
     height: 30px;
-    width: 92px;
+    width: 90px;
 }
 
