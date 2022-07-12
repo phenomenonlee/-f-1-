@@ -24,8 +24,10 @@ def ripple_post():
 
 
 @app.route('/info', methods=["GET"])
-def index():
-    return render_template("detail.html")
+def desc_get():
+    desc_list = list(db.info.find({}, {'_id': False}))
+    return jsonify({'desc': desc_list})
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
