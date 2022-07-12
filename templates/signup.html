@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>signup page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <style>
+        .title {
+            position: absolute;
+            top:50%;
+            left:50%;
+            margin-top: -200px;
+            margin-left: -130px;
+        }
+        .box {
+            position: absolute;
+            top:50%;
+            left:50%;
+            width:500px;
+            height: 250px;
+            margin-left: -250px;
+            margin-top: -150px;
+        }
+        .button {
+            position: absolute;
+            top:50%;
+            left:50%;
+            width: 100px;
+            height: 40px;
+            margin-left: -50px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero is-info is-halfheight">
+    <div class="hero-body">
+        <div class="">
+            <p class="title">
+                Song & C 회원 가입
+            </p>
+            <p class="subtitle">
+            <form class="box">
+                <div class="field">
+                    <label class="label">사용 하실 이메일</label>
+                    <div class="control">
+                        <input class="input" type="email" placeholder="e.g. alex@example.com">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">비밀 번호</label>
+                    <div class="control">
+                        <input class="input" type="password" placeholder="********">
+                    </div>
+                </div>
+
+
+            </form>
+            <button class="button is-primary">가입 완료</button>
+            </p>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
