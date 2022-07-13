@@ -29,8 +29,10 @@
             padding: 5px;
             color: black;
         margin-bottom: 40px;
-
-
-
         }
+#login,
+#my,
+#logout{
+    margin-right: 10px;
+}
 
