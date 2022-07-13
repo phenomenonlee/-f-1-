@@ -89,7 +89,7 @@
         //         }
         //     });
         // }
-
+// 리플 저장하기
         function detail_info() {
             let detail = {{detail}}
             $.ajax({
@@ -125,7 +125,7 @@
                 }
             });
         }
-
+//ripple 가져오기
         function show_ripple() {
             $.ajax({
                 type: "GET",
@@ -133,19 +133,18 @@
                 data: {},
                 success: function (response) {
                     console.log(response)
-                    let rows = response['ripple']
-                    for (let i = 0; i < rows.length; i++) {
-                        let ripple = rows[i]['ripple']
+                    let rows = response['result']
 
-                        let temp_html =
-                            `<div class="card text-white bg-secondary mb-3">
+                    let ripple = rows['desc']
+
+                    let temp_html =
+                        `<div class="card text-white bg-secondary mb-3">
                                 <div class="card-header">id</div>
                                 <div class="card-body">
                                     <p class="card-text">${ripple}</p>
                                 </div>
                             </div>`
-                        $('#ripple-box').append(temp_html)
-                    }
+                    $('#ripple-box').append(temp_html)
                 }
             });
         }
