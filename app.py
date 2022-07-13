@@ -26,11 +26,9 @@ def insert_contents_post():
     token_receive = request.cookies.get('mytoken')
 
     try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])#{'id': 'gwonyeong', 'exp': 1657768562}
-                                                                            # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
-        print(payload)
-        user_id = db.users.find_one({"id": payload["id"]},{'_id': False})
-        print(user_id)
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
+        # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
+        user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
         idx_list = list(db.contents.find({}, {'_id': False}))
         idx = len(idx_list) + 1
 
@@ -47,15 +45,12 @@ def insert_contents_post():
         db.contents.insert_one(doc)
 
         return jsonify({'msg': '공유되었습니다.'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError): #확인할 부분
-        return render_template('login.html',msg = '로그인이 필요합니다.')
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):  # 확인할 부분
+        return render_template('login.html', msg='로그인이 필요합니다.')
 
 
 @app.route("/con", methods=["GET"])
 def insert_contents_get():
-
-
-
     contents = list(db.contents.find({}, {'_id': False}))
     return jsonify({'contents': contents})
 
@@ -70,21 +65,23 @@ def signup():
     return render_template('signup.html')
 
 
-@app.route('/detail?<index>')
-def detail(index):
-    return render_template('detail.html')
+@app.route('/detail')
+def detail():
+    index_recieve = request.args.get('index')
+    content = db.contents.find_one({'index': int(index_recieve)}, {'_id': False})
+    return render_template('detail.html', detail=content['index'])
 
 
 @app.route('/mypage')
 def mypage():
     return render_template('mypage.html')
 
+
 @app.route("/mypage", methods=["POST"])
 def mypage_info():
     token_receive = request.cookies.get('mytoken')
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
     all_users = list(db.contents.find({"id": payload['id']}, {'_id': False}))
-    print(all_users)
     return jsonify({'contents': all_users})
 
 
@@ -99,11 +96,11 @@ def footer():
     return render_template('footer.html')
 
 
-# 여기부터 기능들
-@app.route('/detail')
+@app.route('/detail/info', methods=['GET'])
 def detail_post():
-    index_recieve = request.args.get('index')
-    return render_template('detail.html', index = index_recieve)
+    detail = request.args.get('detail')
+    content = db.contents.find_one({'index': int(detail)}, {'_id': False})
+    return jsonify({'result': content})
 
 
 # login&signup
@@ -151,27 +148,15 @@ def sign_in():
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
-@app.route('/')
-def index():
-    return render_template("detail.html")
-
-    
 @app.route("/info", methods=["POST"])
 def ripple_post():
     ripple_receive = request.form['ripple_give']
-    print(ripple_receive)
     doc = {
         'ripple': ripple_receive,
     }
     db.info.insert_one(doc)
 
     return jsonify({'msg': '작성 완료!'})
-
-
-# @app.route('/detail', methods=["GET"])
-# def desc_get():
-#     desc_list = list(db.contents.find({}, {'_id': False}))
-#     return jsonify({'desc': desc_list})
 
 
 @app.route('/info', methods=["GET"])
