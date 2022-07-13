@@ -47,12 +47,15 @@ def insert_contents_post():
         db.contents.insert_one(doc)
 
         return jsonify({'msg': '공유되었습니다.'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError): #확인할 부분
         return render_template('login.html',msg = '로그인이 필요합니다.')
 
 
 @app.route("/con", methods=["GET"])
 def insert_contents_get():
+
+
+
     contents = list(db.contents.find({}, {'_id': False}))
     return jsonify({'contents': contents})
 
@@ -89,9 +92,16 @@ def footer():
 
 
 # 여기부터 기능들
+<<<<<<< HEAD
 # @app.route('/detail', methods=["POST"])
 # def detail_post():
 #     return jsonify({'msg': '보내기 완료'})
+=======
+@app.route('/detail')
+def detail_post():
+    index_recieve = request.args.get('index')
+    return render_template('detail.html', index = index_recieve)
+>>>>>>> a654b85f5ecbde72a52bce99a1bc4e229b4b9c4c
 
 
 # login&signup
@@ -156,12 +166,19 @@ def ripple_post():
     return jsonify({'msg': '작성 완료!'})
 
 
+<<<<<<< HEAD
 @app.route('/detail', methods=["GET"])
 def desc_get():
     index_recieve = request.args.get('index')
     content = db.contents.find_one({'index': int(index_recieve)})
     print(index_recieve)
     return jsonify({'desc': content})
+=======
+# @app.route('/detail', methods=["GET"])
+# def desc_get():
+#     desc_list = list(db.contents.find({}, {'_id': False}))
+#     return jsonify({'desc': desc_list})
+>>>>>>> a654b85f5ecbde72a52bce99a1bc4e229b4b9c4c
 
 
 @app.route('/info', methods=["GET"])
