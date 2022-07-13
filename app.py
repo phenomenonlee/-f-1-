@@ -48,7 +48,7 @@ def insert_contents_post():
                'id': user_id['id']}
         db.contents.insert_one(doc)
 
-<<<<<<< HEAD
+
         return jsonify({'success': 'true' ,'msg': '공유되었습니다.'})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError): #확인할 부분
         return jsonify({'success': 'false' ,'msg': '로그인이 필요합니다!.'})
@@ -57,20 +57,19 @@ def insert_contents_post():
 
 @app.route("/con", methods=["GET"])
 def insert_contents_get():
-<<<<<<< HEAD
-    token_receive = request.cookies.get('mytoken')
 
+    token_receive = request.cookies.get('mytoken')
+    contents = list(db.contents.find({}, {'_id': False}))
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
         # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
 
         user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
         id = user_id['id']
-        contents = list(db.contents.find({}, {'_id': False}))
+
         return jsonify({'contents': contents, 'id':id})
     except:
-        pass
-
+        return jsonify({'contents': contents})
 
 
 

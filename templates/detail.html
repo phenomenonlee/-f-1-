@@ -71,17 +71,6 @@
         }
     </style>
     <script>
-<<<<<<< HEAD
-
-
-
-//commen
-        $(document).ready(function () {
-            console.log({{ index }})
-            gwonyeong()
-
-        });
-=======
         $(document).ready(function () {
             show_ripple(), detail_info()
         });
@@ -136,20 +125,18 @@
                 }
             });
         }
->>>>>>> f3663abf029e48b00bdf307e77014566a6c60e66
 
-        function gwonyeong(){
-            let idx = {{ index }}
-                console.log(idx + 'idx값')
+        function show_ripple() {
             $.ajax({
-                type: 'POST',
-                url: '/detail',
-                data: {'index_give': idx},
+                type: "GET",
+                url: "/info",
+                data: {},
                 success: function (response) {
-                    console.log(response['ripple'])
+                    console.log(response)
+                    let rows = response['ripple']
+                    for (let i = 0; i < rows.length; i++) {
+                        let ripple = rows[i]['ripple']
 
-<<<<<<< HEAD
-=======
                         let temp_html =
                             `<div class="card text-white bg-secondary mb-3">
                                 <div class="card-header">id</div>
@@ -160,87 +147,9 @@
                             </div>`
                         $('#ripple-box').append(temp_html)
                     }
->>>>>>> f3663abf029e48b00bdf307e77014566a6c60e66
                 }
             });
-
         }
-        {#function save_ripple() {#}
-        {#    let ripple = $('#ripple').val()#}
-        {#    console.log(ripple)#}
-        {#    $.ajax({#}
-        {#        type: 'POST',#}
-        {#        url: '/info',#}
-        {#        data: {ripple_give: ripple},#}
-        {#        success: function (response) {#}
-        {#            alert(response['msg'])#}
-        {#            window.location.reload()#}
-        {#        }#}
-        {#    });#}
-
-
-  {#      function show_info() {#}
-  {#          $.ajax({#}
-  {#              type: "GET",#}
-  {#              url: "/contents",#}
-  {#              data: {},#}
-  {#              success: function (response) {#}
-  {#                  console.log(response)#}
-  {#                  let rows = response['desc']#}
-  {#                  for (let i = 0; i < rows.length; i++) {#}
-  {#                      let id = rows[i]['id']#}
-  {#                      let title = rows[i]['title']#}
-  {#                      let desc = rows[i]['desc']#}
-  {#                      let url = rows[i]['url']#}
-  {##}
-  {#                      let temp_html = `<div class="content">#}
-  {#  <img class="picture-box" src=${url} alt="...">#}
-  {#  <div class="card">#}
-  {#    <div class="card-header">#}
-  {#      ${id}#}
-  {#    </div>#}
-  {#    <div class="card-body">#}
-  {#      <blockquote class="blockquote mb-0">#}
-  {#        <p>${title}</p>#}
-  {#        <footer class="blockquote-footer"> <cite title="Source Title">${desc}</cite></footer>#}
-  {#      </blockquote>#}
-  {#    </div>#}
-  {#  </div>#}
-  {#</div>`#}
-  {#                      $('#cards-box').append(temp_html)#}
-  {#                  }#}
-  {#              }#}
-  {#          });#}
-  {#      }#}
-//리플 가져오기
-        {#$(document).ready(function () {#}
-        {#    console.log({{ index }})#}
-        {#    show_ripple();#}
-
-        {##}
-        {#function show_ripple() {#}
-        {#    $.ajax({#}
-        {#        type: "GET",#}
-        {#        url: "/info",#}
-        {#        data: {},#}
-        {#        success: function (response) {#}
-        {#            console.log(response)#}
-        {#            let rows = response['ripple']#}
-        {#            for (let i = 0; i < rows.length; i++) {#}
-        {#                let ripple = rows[i]['ripple']#}
-        {##}
-        {#                let temp_html =`<div class="card text-white bg-secondary mb-3">#}
-        {#    <div class="card-header">id</div>#}
-        {#    <div class="card-body">#}
-        {##}
-        {#        <p class="card-text">${ripple}</p>#}
-        {#    </div>#}
-        {#</div>`#}
-        {#                             $('#ripple-box').append(temp_html)#}
-        {#            }#}
-        {#        }#}
-        {#    });#}
-
 
     </script>
 
