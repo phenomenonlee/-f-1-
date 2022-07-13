@@ -133,7 +133,7 @@ def sign_in():
 def index():
     return render_template("detail.html")
 
-
+    
 @app.route("/info", methods=["POST"])
 def ripple_post():
     ripple_receive = request.form['ripple_give']
