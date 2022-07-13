@@ -37,9 +37,9 @@
         }
 .cards>.picture-box{
 
-            background-color: green;
-            max-width: 200px;
-            max-height: 200px;
+
+            width: 200px;
+            height: 200px;
             float :left;
         }
 .cards>.card{
@@ -73,3 +73,30 @@
 .pagination{
     float : right;
 }
+.img{
+    background-color: black;
+
+    width: 200px;
+    height: 200px;
+
+
+}
+
+.id-text{
+    float:right;
+    color: aquamarine;
+}
+.empty-box{
+    height: 10px;
+}
+.more-contents-button{
+    width: 1000px;
+    margin: 30px auto 0 auto;
+
+
+    display: flex; /*가운데로 옮기는 애들 */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

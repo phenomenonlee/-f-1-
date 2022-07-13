@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (musicProject)" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (미니미니프로젝트) (2)" project-jdk-type="Python SDK" />
+>>>>>>> 77709aeac207d0838c6c4f0f9a768a277e6ebdc9
+=======
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (sparta_week4)" project-jdk-type="Python SDK" />
+>>>>>>> 260e3023e3e088e23ceeff3538291867fa10c72b
 </project>
