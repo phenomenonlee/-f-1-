@@ -408,6 +408,9 @@
     <SUITE FILE_PATH="coverage/$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657634755385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/sparta_1st_week_project$app.coverage" NAME="app 커버리지 결과" MODIFIED="1657679836648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/$app.coverage" NAME="app 커버리지 결과" MODIFIED="1657671561979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+<<<<<<< HEAD
+    <SUITE FILE_PATH="coverage/sparta_1st_week_project$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657688406587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+=======
     <SUITE FILE_PATH="coverage/sparta_1st_week_project$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657688364443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
 >>>>>>> 260e3023e3e088e23ceeff3538291867fa10c72b
 >>>>>>> d58f685fdc0c2220a4ef1a4d7cb35dc520045115
