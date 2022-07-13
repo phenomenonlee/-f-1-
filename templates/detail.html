@@ -76,19 +76,19 @@
         });
 
 
-        function save_ripple() {
-            let ripple = $('#ripple').val()
-            console.log(ripple)
-            $.ajax({
-                type: 'POST',
-                url: '/info',
-                data: {ripple_give: ripple},
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            });
-        }
+        // function save_ripple() {
+        //     let ripple = $('#ripple').val()
+        //     console.log(ripple)
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '/info',
+        //         data: {ripple_give: ripple},
+        //         success: function (response) {
+        //             alert(response['msg'])
+        //             window.location.reload()
+        //         }
+        //     });
+        // }
 
         function detail_info() {
             let detail = {{detail}}
@@ -129,7 +129,7 @@
         function show_ripple() {
             $.ajax({
                 type: "GET",
-                url: "/info",
+                url: `/detail/ripple?detail=${detail}`,
                 data: {},
                 success: function (response) {
                     console.log(response)
@@ -141,7 +141,6 @@
                             `<div class="card text-white bg-secondary mb-3">
                                 <div class="card-header">id</div>
                                 <div class="card-body">
-
                                     <p class="card-text">${ripple}</p>
                                 </div>
                             </div>`
@@ -150,6 +149,22 @@
                 }
             });
         }
+
+         function save_ripple() {
+            let desc = $('#ripple').val()
+             let detail = {{detail}}
+
+
+            //이곳에서 로그인한 사용자의 닉네임을 받아와야함!
+            $.ajax({
+                type: 'POST',
+                url: `/detail/ripple?detail=${detail}`,
+                data: {ripple_give: desc},
+                success: function (response) {
+                    window.location.reload()
+                }
+            });
+        };
 
     </script>
 
