@@ -1,7 +1,6 @@
 #mypage_info_box_box {
     display: flex;
     justify-content: center;
-
     margin-top: 40px;
 }
 
@@ -9,10 +8,12 @@
     max-width: 1188px;
     width: 95%;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .card{
     margin-right: 20px;
+    margin-bottom: 30px;
 }
 
 .card-text {
