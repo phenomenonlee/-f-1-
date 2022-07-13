@@ -50,9 +50,9 @@ def insert_contents_post():
                'id': user_id['id']}
         db.contents.insert_one(doc)
 
-        return jsonify({'msg': '공유되었습니다.'})
+        return jsonify({'success': 'true' ,'msg': '공유되었습니다.'})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError): #확인할 부분
-        return render_template('login.html',msg = '로그인이 필요합니다.')
+        return jsonify({'success': 'false' ,'msg': '로그인이 필요합니다!.'})
 
 
 @app.route("/con", methods=["GET"])
@@ -109,9 +109,16 @@ def footer():
 @app.route('/detail')
 def detail_post():
     index_recieve = request.args.get('index')
-
     return render_template('detail.html', index = index_recieve)
 
+@app.route('/detail' , methods=['POST'])
+def get_detail_page():
+    index = request.form['index_give']
+    print(index)
+    user = db.contents.find_one({'index':int(index)})
+
+    print(user)
+    return jsonify({'ripple':user})
 
 # login&signup
 

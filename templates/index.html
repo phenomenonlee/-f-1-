@@ -156,7 +156,15 @@
                 url: '/',
                 data: {'artist_give': artist, 'title_give': title, 'desc_give': desc, 'url_give': URL},
                 success: function (response) {
+                    if(response['success'] == 'true'){
+                    alert(response['msg'])
                     window.location.reload()
+
+                    }else{
+                        alert(response['msg'])
+                        window.location.href ='/login'
+                    }
+
                 }
             });
         };
@@ -198,8 +206,8 @@
             <label for="floatingTextarea2" id='comment'>노래 설명</label>
 
             <div class="buttons">
-                <button onclick="shareMyMusic()" type="button" class="btn btn-dark">공유하기!</button>
-                <button onclick="close_button()" type="button" class="btn btn-outline-dark">닫기</button>
+                <button onclick="shareMyMusic()" style="margin-right: 10px" type="button" class="btn btn-dark">공유하기!</button>
+                <button onclick="close_button()" style="margin-left: 0px" type="button" class="btn btn-outline-dark">닫기</button>
             </div>
         </div>
     </div>
