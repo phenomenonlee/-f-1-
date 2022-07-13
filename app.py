@@ -67,9 +67,9 @@ def signup():
     return render_template('signup.html')
 
 
-@app.route('/detail?<index>')
-def detail(index):
-    return render_template('detail.html')
+# @app.route('/detail?<index>')
+# def detail(index):
+#     return render_template('detail.html')
 
 
 @app.route('/mypage')
@@ -89,9 +89,9 @@ def footer():
 
 
 # 여기부터 기능들
-@app.route('/detail', methods=["POST"])
-def detail_post():
-    return jsonify({'msg': '보내기 완료'})
+# @app.route('/detail', methods=["POST"])
+# def detail_post():
+#     return jsonify({'msg': '보내기 완료'})
 
 
 # login&signup
@@ -139,11 +139,11 @@ def sign_in():
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
-@app.route('/')
-def index():
-    return render_template("detail.html")
+@app.route('/detail')
+def desc_list():
+    return render_template('detail.html')
 
-    
+
 @app.route("/info", methods=["POST"])
 def ripple_post():
     ripple_receive = request.form['ripple_give']
@@ -156,10 +156,12 @@ def ripple_post():
     return jsonify({'msg': '작성 완료!'})
 
 
-@app.route('/contents', methods=["GET"])
+@app.route('/detail', methods=["GET"])
 def desc_get():
-    desc_list = list(db.contents.find({}, {'_id': False}))
-    return jsonify({'desc': desc_list})
+    index_recieve = request.args.get('index')
+    content = db.contents.find_one({'index': int(index_recieve)})
+    print(index_recieve)
+    return jsonify({'desc': content})
 
 
 @app.route('/info', methods=["GET"])

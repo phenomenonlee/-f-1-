@@ -48,17 +48,18 @@
                         let desc = rows[i]["desc"]
                         let title = rows[i]["title"]
                         let id = rows[i]['id']
+                        let index =rows[i]['index']
                         let temp_html = `<div class="cards" id="cards">
                                             <div class="picture-box">
-                                                <a href="https://www.naver.com/">
-                                                    <img href="/detail?<index>" src=${URL} alt="" class="img">
+                                                <a href="/detail?index=${index}">
+                                                    <img src=${URL} alt="" class="img">
                                                 </a>
                                             </div>
                                             <div class="card" >
                                                 <div class="card-body">
                                                     <h5 class="card-title">${title}</h5>
                                                     <h6 class="card-subtitle mb-2 text-muted">${artist}</h6>
-                                                     <h6 class="card-text">id : ${id} 님</h6>
+                                                     <h6 class="card-text">${id} 님</h6>
                                                      <div class='empty-box'>
                                                        </div>
                                                     <p class="card-text">${desc}</p>
