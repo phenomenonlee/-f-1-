@@ -52,6 +52,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -69,6 +71,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
 =======
+>>>>>>> d58f685fdc0c2220a4ef1a4d7cb35dc520045115
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -81,7 +84,10 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+<<<<<<< HEAD
+=======
 >>>>>>> 260e3023e3e088e23ceeff3538291867fa10c72b
+>>>>>>> d58f685fdc0c2220a4ef1a4d7cb35dc520045115
   }
 }</component>
   <component name="RecentsManager">
@@ -382,6 +388,9 @@
     <SUITE FILE_PATH="coverage/gitMusic$app.coverage" NAME="app 커버리지 결과" MODIFIED="1657627691694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/git" />
     <SUITE FILE_PATH="coverage/musicProject$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657679272045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/gitMusic$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657628855389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+<<<<<<< HEAD
+    <SUITE FILE_PATH="coverage/$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657687115112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+=======
 <<<<<<< HEAD
     <SUITE FILE_PATH="coverage/$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657634755385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/git$Flask__app_py_.coverage" NAME="Flask (app.py) 커버리지 결과" MODIFIED="1657622685621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
