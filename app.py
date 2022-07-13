@@ -64,6 +64,10 @@ def detail():
 
 @app.route('/mypage')
 def mypage():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    all_users = list(db.contents.find({"id": payload['id']}, {'_id': False}))
+
     return render_template('mypage.html')
 
 
