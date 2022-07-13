@@ -45,7 +45,6 @@ def insert_contents_post():
 @app.route("/con", methods=["GET"])
 def insert_contents_get():
     contents = list(db.contents.find({}, {'_id': False}))
-
     return jsonify({'contents': contents})
 
 
