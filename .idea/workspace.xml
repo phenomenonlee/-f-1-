@@ -51,6 +51,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+<<<<<<< HEAD
+    "last_opened_file_path": "D:/musicProject/app.py",
+=======
+    "last_opened_file_path": "C:/Users/flejd/OneDrive/바탕 화면/미니프로젝트",
+>>>>>>> 77709aeac207d0838c6c4f0f9a768a277e6ebdc9
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+=======
+>>>>>>> d58f685fdc0c2220a4ef1a4d7cb35dc520045115
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -63,6 +84,10 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+<<<<<<< HEAD
+=======
+>>>>>>> 260e3023e3e088e23ceeff3538291867fa10c72b
+>>>>>>> d58f685fdc0c2220a4ef1a4d7cb35dc520045115
   }
 }</component>
   <component name="RecentsManager">
@@ -75,29 +100,13 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.git">
-    <configuration default="true" type="DjangoTestsConfigurationType">
-      <module name="git" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="header.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/미니프로젝트/templates/header.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <configuration name="login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/musicProject/templates/login.html" useBuiltInWebServerPort="true">
+=======
     <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
       <module name="git" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -131,8 +140,11 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
+>>>>>>> 77709aeac207d0838c6c4f0f9a768a277e6ebdc9
       <method v="2" />
     </configuration>
+=======
+>>>>>>> 260e3023e3e088e23ceeff3538291867fa10c72b
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="git" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -140,13 +152,23 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
+<<<<<<< HEAD
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+=======
       <option name="SDK_HOME" value="C:\Users\flejd\OneDrive\바탕 화면\미니미니프로젝트\venv\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Desktop/git" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../git" />
       <option name="IS_MODULE_SDK" value="false" />
+>>>>>>> 77709aeac207d0838c6c4f0f9a768a277e6ebdc9
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/Desktop/git/app.py" />
+<<<<<<< HEAD
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+=======
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../git/app.py" />
+>>>>>>> 260e3023e3e088e23ceeff3538291867fa10c72b
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -162,9 +184,17 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <option name="SDK_HOME" value="" />
+=======
       <option name="SDK_HOME" value="C:\Users\flejd\OneDrive\바탕 화면\미니미니프로젝트\venv\Scripts\python.exe" />
+>>>>>>> 77709aeac207d0838c6c4f0f9a768a277e6ebdc9
+=======
+      <option name="SDK_HOME" value="C:\Users\qhgus\Desktop\sparta_week4\venv\Scripts\python.exe" />
+>>>>>>> 260e3023e3e088e23ceeff3538291867fa10c72b
       <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -192,6 +222,12 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <list>
+      <item itemvalue="Flask 서버.Flask (app.py)" />
+      <item itemvalue="JavaScript 디버그.login.html" />
+=======
     <configuration default="true" type="Python.FlaskServer">
       <module name="git" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -285,14 +321,18 @@
       <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
+=======
+>>>>>>> 260e3023e3e088e23ceeff3538291867fa10c72b
     <list>
       <item itemvalue="Flask 서버.Flask (app.py)" />
+>>>>>>> 77709aeac207d0838c6c4f0f9a768a277e6ebdc9
       <item itemvalue="JavaScript 디버그.header.html" />
       <item itemvalue="Python.git" />
       <item itemvalue="Python.app" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript 디버그.login.html" />
         <item itemvalue="JavaScript 디버그.header.html" />
         <item itemvalue="Python.app" />
         <item itemvalue="Flask 서버.Flask (app.py)" />
@@ -310,6 +350,12 @@
       <workItem from="1657597475531" duration="8281000" />
       <workItem from="1657606981184" duration="15684000" />
       <workItem from="1657631299988" duration="3853000" />
+<<<<<<< HEAD
+      <workItem from="1657679073261" duration="334000" />
+=======
+      <workItem from="1657688083903" duration="79000" />
+      <workItem from="1657688180058" duration="221000" />
+>>>>>>> 260e3023e3e088e23ceeff3538291867fa10c72b
     </task>
     <servers />
   </component>
@@ -333,10 +379,37 @@
     </ignored-roots>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
     <SUITE FILE_PATH="coverage/git$Flask__app_py_.coverage" NAME="Flask (app.py) 커버리지 결과" MODIFIED="1657622685621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/$app.coverage" NAME="app 커버리지 결과" MODIFIED="1657671561979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+>>>>>>> 77709aeac207d0838c6c4f0f9a768a277e6ebdc9
     <SUITE FILE_PATH="coverage/gitMusic$app.coverage" NAME="app 커버리지 결과" MODIFIED="1657627691694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/git" />
+    <SUITE FILE_PATH="coverage/musicProject$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657679272045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/gitMusic$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657628855389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+<<<<<<< HEAD
     <SUITE FILE_PATH="coverage/$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657687115112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+=======
+<<<<<<< HEAD
+    <SUITE FILE_PATH="coverage/$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657634755385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/git$Flask__app_py_.coverage" NAME="Flask (app.py) 커버리지 결과" MODIFIED="1657622685621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+=======
+    <SUITE FILE_PATH="coverage/$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657678214004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+>>>>>>> 77709aeac207d0838c6c4f0f9a768a277e6ebdc9
+=======
+    <SUITE FILE_PATH="coverage/sparta_1st_week_project$app__1_.coverage" NAME="app (1) 커버리지 결과" MODIFIED="1657617027192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sparta_1_project$app__1_.coverage" NAME="app (1) 커버리지 결과" MODIFIED="1657589977194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/gitMusic$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657628855389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/git$Flask__app_py_.coverage" NAME="Flask (app.py) 커버리지 결과" MODIFIED="1657622685621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/gitMusic$app.coverage" NAME="app 커버리지 결과" MODIFIED="1657627691694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../git" />
+    <SUITE FILE_PATH="coverage/sparta_1_project$app.coverage" NAME="app 커버리지 결과" MODIFIED="1657535788042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../sparta/projects/homework" />
+    <SUITE FILE_PATH="coverage/sparta_1st_week_project$app__2_.coverage" NAME="app (2) 커버리지 결과" MODIFIED="1657615147936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../sparta/projects/mars" />
+    <SUITE FILE_PATH="coverage/$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657634755385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/sparta_1st_week_project$app.coverage" NAME="app 커버리지 결과" MODIFIED="1657679836648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/$app.coverage" NAME="app 커버리지 결과" MODIFIED="1657671561979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sparta_1st_week_project$git.coverage" NAME="git 커버리지 결과" MODIFIED="1657688364443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+>>>>>>> 260e3023e3e088e23ceeff3538291867fa10c72b
+>>>>>>> d58f685fdc0c2220a4ef1a4d7cb35dc520045115
   </component>
 </project>
