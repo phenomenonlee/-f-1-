@@ -1,0 +1,34 @@
+.section {
+    padding: 1rem 1.5rem;
+    max-width: 750px;
+    margin: auto;
+}
+
+.title {
+    font-weight: 800;
+    font-size: 5rem;
+}
+
+.subtitle {
+    font-size: 2rem;
+}
+
+.is-sparta {
+    color: #7f7f7f !important;
+}
+
+.button.is-sparta {
+    background-color: #7f7f7f;
+    border-color: transparent;
+    color: #fff !important;
+}
+
+.button.is-sparta.is-outlined {
+    background-color: transparent;
+    border-color: #7f7f7f;
+    color: #7f7f7f !important;
+}
+
+.help {
+    color: gray;
+}
