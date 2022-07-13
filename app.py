@@ -47,12 +47,15 @@ def insert_contents_post():
         db.contents.insert_one(doc)
 
         return jsonify({'msg': '공유되었습니다.'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError): #확인할 부분
         return render_template('login.html',msg = '로그인이 필요합니다.')
 
 
 @app.route("/con", methods=["GET"])
 def insert_contents_get():
+
+
+
     contents = list(db.contents.find({}, {'_id': False}))
     return jsonify({'contents': contents})
 
