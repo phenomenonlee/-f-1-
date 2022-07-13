@@ -5,7 +5,6 @@ import hashlib
 import jwt
 import requests
 
-
 app = Flask(__name__)
 
 from pymongo import MongoClient
@@ -85,7 +84,6 @@ def detail_post():
     return jsonify({'msg': '보내기 완료'})
 
 
-
 # login&signup
 
 @app.route('/sign_up/check_dup', methods=['POST'])
@@ -129,6 +127,7 @@ def sign_in():
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
+
 @app.route('/')
 def index():
     return render_template("detail.html")
@@ -156,7 +155,6 @@ def desc_get():
 def ripple_get():
     ripple_list = list(db.info.find({}, {'_id': False}))
     return jsonify({'ripple': ripple_list})
-
 
 
 if __name__ == '__main__':
