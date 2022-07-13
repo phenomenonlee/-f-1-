@@ -92,9 +92,10 @@ def footer():
 
 
 # 여기부터 기능들
-@app.route('/detail', methods=["POST"])
+@app.route('/detail')
 def detail_post():
-    return jsonify({'msg': '보내기 완료'})
+    index_recieve = request.args.get('index')
+    return render_template('detail.html', index = index_recieve)
 
 
 # login&signup
@@ -159,10 +160,10 @@ def ripple_post():
     return jsonify({'msg': '작성 완료!'})
 
 
-@app.route('/contents', methods=["GET"])
-def desc_get():
-    desc_list = list(db.contents.find({}, {'_id': False}))
-    return jsonify({'desc': desc_list})
+# @app.route('/detail', methods=["GET"])
+# def desc_get():
+#     desc_list = list(db.contents.find({}, {'_id': False}))
+#     return jsonify({'desc': desc_list})
 
 
 @app.route('/info', methods=["GET"])
