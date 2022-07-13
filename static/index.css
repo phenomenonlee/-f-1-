@@ -101,4 +101,30 @@
     justify-content: center;
     align-items: center;
 }
+.buttons{
+
+    margin: 10px 0px 0 0px;
+
+}
+
+.delete-buttons{
+
+
+    max-width: 800px;
+
+   /*display: flex; !*가운데로 옮기는 애들 *!*/
+   /* flex-direction: column;*/
+   /* justify-content: center;*/
+   /* align-items: center;*/
+}
+.delete-buttons>button{
+    float:right;
+}
+.Favorites{
+    width: 50px;
+    height: 50px;
+    background-color: aliceblue;
+    border-color: white;
+    box-shadow: white;
+}
 

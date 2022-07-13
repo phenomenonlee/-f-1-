@@ -19,7 +19,11 @@ db = client.dbsparta
 @app.route("/")
 def main():
     return render_template('index.html')
-
+@app.route("/delete", methods=["POST"])
+def delete_contents():
+    idx = request.form['button_give']
+    db.contents.delete_one({'index': int(idx)})
+    return jsonify({'msg':'게시물이 삭제되었습니다.'})
 
 @app.route("/", methods=["POST"])
 def insert_contents_post():
@@ -44,15 +48,29 @@ def insert_contents_post():
                'id': user_id['id']}
         db.contents.insert_one(doc)
 
-        return jsonify({'msg': '공유되었습니다.'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):  # 확인할 부분
-        return render_template('login.html', msg='로그인이 필요합니다.')
+
+        return jsonify({'success': 'true' ,'msg': '공유되었습니다.'})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError): #확인할 부분
+        return jsonify({'success': 'false' ,'msg': '로그인이 필요합니다!.'})
+
 
 
 @app.route("/con", methods=["GET"])
 def insert_contents_get():
+
+    token_receive = request.cookies.get('mytoken')
     contents = list(db.contents.find({}, {'_id': False}))
-    return jsonify({'contents': contents})
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
+        # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
+
+        user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
+        id = user_id['id']
+
+        return jsonify({'contents': contents, 'id':id})
+    except:
+        return jsonify({'contents': contents})
+
 
 
 @app.route('/login')
@@ -102,6 +120,14 @@ def detail_post():
     content = db.contents.find_one({'index': int(detail)}, {'_id': False})
     return jsonify({'result': content})
 
+@app.route('/detail' , methods=['POST'])
+def get_detail_page():
+    index = request.form['index_give']
+    print(index)
+    user = db.contents.find_one({'index':int(index)})
+
+    print(user)
+    return jsonify({'ripple':user})
 
 # login&signup
 
