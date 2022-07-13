@@ -5,7 +5,6 @@ import hashlib
 import jwt
 import requests
 
-
 app = Flask(__name__)
 
 from pymongo import MongoClient
@@ -138,6 +137,35 @@ def sign_in():
     # 찾지 못하면
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
+
+
+@app.route('/')
+def index():
+    return render_template("detail.html")
+
+    
+@app.route("/info", methods=["POST"])
+def ripple_post():
+    ripple_receive = request.form['ripple_give']
+    print(ripple_receive)
+    doc = {
+        'ripple': ripple_receive,
+    }
+    db.info.insert_one(doc)
+
+    return jsonify({'msg': '작성 완료!'})
+
+
+@app.route('/contents', methods=["GET"])
+def desc_get():
+    desc_list = list(db.contents.find({}, {'_id': False}))
+    return jsonify({'desc': desc_list})
+
+
+@app.route('/info', methods=["GET"])
+def ripple_get():
+    ripple_list = list(db.info.find({}, {'_id': False}))
+    return jsonify({'ripple': ripple_list})
 
 
 if __name__ == '__main__':

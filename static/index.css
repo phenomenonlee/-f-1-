@@ -7,6 +7,10 @@
 /*footer*/
 @import "footer.css";
 
+/*login*/
+@import "login.css";
+
+
 * {
     font-family: 'Gowun Dodum', sans-serif;
 }
