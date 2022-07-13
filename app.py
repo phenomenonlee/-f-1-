@@ -23,9 +23,9 @@ def ripple_post():
     return jsonify({'msg': '작성 완료!'})
 
 
-@app.route('/info', methods=["GET"])
+@app.route('/contents', methods=["GET"])
 def desc_get():
-    desc_list = list(db.info.find({}, {'_id': False}))
+    desc_list = list(db.contents.find({}, {'_id': False}))
     return jsonify({'desc': desc_list})
 
 
