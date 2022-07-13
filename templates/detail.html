@@ -97,7 +97,7 @@
                     console.log(response)
                     let rows = response['desc']
                     for (let i = 0; i < rows.length; i++) {
-                        let _id = rows[i]['_id']
+                        let id = rows[i]['id']
                         let title = rows[i]['title']
                         let desc = rows[i]['desc']
                         let url = rows[i]['url']
@@ -106,7 +106,7 @@
     <img class="picture-box" src=${url} alt="...">
     <div class="card">
       <div class="card-header">
-        ${_id}
+        ${id}
       </div>
       <div class="card-body">
         <blockquote class="blockquote mb-0">
@@ -122,6 +122,33 @@
             });
         }
 
+        $(document).ready(function () {
+            show_ripple();
+        });
+
+        function show_ripple() {
+            $.ajax({
+                type: "GET",
+                url: "/info",
+                data: {},
+                success: function (response) {
+                    console.log(response)
+                    let rows = response['ripple']
+                    for (let i = 0; i < rows.length; i++) {
+                        let ripple = rows[i]['ripple']
+
+                        let temp_html =`<div class="card text-white bg-secondary mb-3">
+            <div class="card-header">id</div>
+            <div class="card-body">
+
+                <p class="card-text">${ripple}</p>
+            </div>
+        </div>`
+                                     $('#ripple-box').append(temp_html)
+                    }
+                }
+            });
+        }
 
     </script>
 
@@ -143,7 +170,7 @@
     <div class="button">
         <button onclick="save_ripple()" class="button is-primary">작성하기</button>
     </div>
-    <div class="comments">
+    <div class="comments" id="ripple-box">
         <div class="card text-white bg-secondary mb-3">
             <div class="card-header">id</div>
             <div class="card-body">

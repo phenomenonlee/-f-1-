@@ -29,5 +29,11 @@ def desc_get():
     return jsonify({'desc': desc_list})
 
 
+@app.route('/info', methods=["GET"])
+def ripple_get():
+    ripple_list = list(db.info.find({}, {'_id': False}))
+    return jsonify({'ripple': ripple_list})
+
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
