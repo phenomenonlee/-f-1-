@@ -10,6 +10,8 @@
 /*login*/
 @import "login.css";
 
+/*maypage*/
+@import "mypage.css";
 
 * {
     font-family: 'Gowun Dodum', sans-serif;

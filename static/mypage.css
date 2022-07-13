@@ -1,0 +1,24 @@
+#mypage_info_box_box {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 40px;
+}
+
+#mypage_info_box {
+    max-width: 1188px;
+    width: 95%;
+    display: flex;
+}
+
+.card{
+    margin-right: 20px;
+}
+
+.card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+

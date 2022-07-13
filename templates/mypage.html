@@ -13,12 +13,54 @@
     <link href="../static/index.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/190c91686f.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script>
+        $(document).ready(function () {
+            show_mypage()
+        });
+
+        function show_mypage() {
+            $.ajax({
+                type: "POST",
+                url: "/mypage",
+                data: {},
+                success: function (response) {
+                    let rows = response['contents']
+                    for (let i = 0; i < rows.length; i++) {
+                        let title = rows[i]['title']
+                        let artist = rows[i]['artist']
+                        let desc = rows[i]['desc']
+                        let url = rows[i]['url']
+                        if (url == "") {
+                            url = "http://image.genie.co.kr/Y/IMAGE/IMG_ALBUM/080/969/543/80969543_1500880366913_1_600x600.JPG"
+                        }
+                        let temp_html =
+                            `<div class="card" style="width: 250px;">
+                                <img src="${url}" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${title} : ${artist}</h5>
+                                        <p class="card-text"> ${desc}</p>
+                                    </div>
+                            </div>`
+                        $('#mypage_info_box').append(temp_html)
+                    }
+                }
+            })
+        }
+    </script>
+
 </head>
 <body>
 <div id="header">
 </div>
 
-<main>mypage</main>
+<main>
+
+    <div id="mypage_info_box_box">
+        <div id="mypage_info_box"></div>
+    </div>
+
+</main>
 
 <div id="footer">
 </div>
