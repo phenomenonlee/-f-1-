@@ -19,7 +19,11 @@ db = client.dbsparta
 @app.route("/")
 def main():
     return render_template('index.html')
-
+@app.route("/delete", methods=["POST"])
+def delete_contents():
+    idx = request.form['button_give']
+    db.contents.delete_one({'index': int(idx)})
+    return jsonify({'msg':'게시물이 삭제되었습니다.'})
 
 @app.route("/", methods=["POST"])
 def insert_contents_post():
@@ -53,8 +57,18 @@ def insert_contents_post():
 
 @app.route("/con", methods=["GET"])
 def insert_contents_get():
+    token_receive = request.cookies.get('mytoken')
 
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
+        # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
 
+        user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
+        id = user_id['id']
+        contents = list(db.contents.find({}, {'_id': False}))
+        return jsonify({'contents': contents, 'id':id})
+    except:
+        pass
 
     contents = list(db.contents.find({}, {'_id': False}))
     return jsonify({'contents': contents})
@@ -95,6 +109,7 @@ def footer():
 @app.route('/detail')
 def detail_post():
     index_recieve = request.args.get('index')
+
     return render_template('detail.html', index = index_recieve)
 
 
