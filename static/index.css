@@ -17,65 +17,70 @@
     font-family: 'Gowun Dodum', sans-serif;
 }
 
-.myPost{
-            background-color: white;
-            max-width: 1000px;
-            width: 95%;
+.myPost {
+    background-color: white;
+    max-width: 1000px;
+    width: 95%;
 
-            border : 2px gray;
-            margin: 20px auto 0px auto;
-            padding: 10px;
-            box-shadow: 0px 0px 3px 0px gray;
+    border: 2px gray;
+    margin: 20px auto 0px auto;
+    padding: 10px;
+    box-shadow: 0px 0px 3px 0px gray;
 
-            display: none;
+    display: none;
 
-        }
-.shareButton{
-            float: right;
-            position: relative;
-            bottom: 40px;
+}
 
-
-        }
-.cards>.picture-box{
+.shareButton {
+    float: right;
+    position: relative;
+    bottom: 40px;
 
 
-            width: 200px;
-            height: 200px;
-            float :left;
-        }
-.cards>.card{
-            max-width: 1000px;
+}
 
-            height: 200px;
-
-        }
-.cards{
+.cards > .picture-box {
 
 
-            height: 200px;
-            max-width: 1000px;
-            width: 95%;
+    width: 200px;
+    height: 200px;
+    float: left;
+}
+
+.cards > .card {
+    max-width: 1000px;
+
+    height: 200px;
+
+}
+
+.cards {
 
 
-            margin: 50px auto 0px auto;
+    height: 200px;
+    max-width: 1000px;
+    width: 95%;
 
 
+    margin: 50px auto 0px auto;
 
-        }
+
+}
 
 
-.page-box{
+.page-box {
     min-width: 300px;
     max-width: 1000px;
 
     margin: 10px auto 0px auto;
 
 }
-.pagination{
-    float : right;
+
+.pagination {
+    float: right;
 }
-.img{
+
+.img {
     background-color: black;
 
     width: 200px;
@@ -84,14 +89,21 @@
 
 }
 
-.id-text{
-    float:right;
+.id-text {
+    float: right;
     color: aquamarine;
 }
-.empty-box{
+
+.card-title {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.empty-box {
     height: 10px;
 }
-.more-contents-button{
+
+.more-contents-button {
     max-width: 1000px;
     margin: 30px auto 0 auto;
 
@@ -101,26 +113,29 @@
     justify-content: center;
     align-items: center;
 }
-.buttons{
+
+.buttons {
 
     margin: 10px 0px 0 0px;
 
 }
 
-.delete-buttons{
+.delete-buttons {
 
 
     max-width: 800px;
     top: 200px;
-   /*display: flex; !*가운데로 옮기는 애들 *!*/
-   /* flex-direction: column;*/
-   /* justify-content: center;*/
-   /* align-items: center;*/
+    /*display: flex; !*가운데로 옮기는 애들 *!*/
+    /* flex-direction: column;*/
+    /* justify-content: center;*/
+    /* align-items: center;*/
 }
-.delete-buttons>button{
-    float:right;
+
+.delete-buttons > button {
+    float: right;
 }
-.Favorites{
+
+.Favorites {
     width: 50px;
     height: 50px;
     background-color: aliceblue;
