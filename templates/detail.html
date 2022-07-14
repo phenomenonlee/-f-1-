@@ -28,6 +28,10 @@
             margin: 0 auto 0 auto;
         }
 
+        #ripple{
+            margin-bottom: 15px;
+        }
+
         .content {
             margin-top: 30px;
             border-style: solid;
@@ -72,24 +76,11 @@
     </style>
     <script>
         $(document).ready(function () {
-            show_ripple(), detail_info()
+            detail_info(), show_ripple()
         });
 
 
-        // function save_ripple() {
-        //     let ripple = $('#ripple').val()
-        //     console.log(ripple)
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: '/info',
-        //         data: {ripple_give: ripple},
-        //         success: function (response) {
-        //             alert(response['msg'])
-        //             window.location.reload()
-        //         }
-        //     });
-        // }
-// 리플 저장하기
+        //노래 정보 가지고 오기
         function detail_info() {
             let detail = {{detail}}
             $.ajax({
@@ -103,9 +94,9 @@
                     let title = rows['title']
                     let desc = rows['desc']
                     let url = rows['url']
-                        if (url == "") {
-                            url = "http://image.genie.co.kr/Y/IMAGE/IMG_ALBUM/080/969/543/80969543_1500880366913_1_600x600.JPG"
-                        }
+                    if (url == "") {
+                        url = "http://image.genie.co.kr/Y/IMAGE/IMG_ALBUM/080/969/543/80969543_1500880366913_1_600x600.JPG"
+                    }
 
                     let temp_html = `<div class="content">
                       <img class="picture-box" src= ${url} alt="">
@@ -125,41 +116,50 @@
                 }
             });
         }
-//ripple 가져오기
+
+        // 상세페이지에 댓글 보여주기
         function show_ripple() {
+
             let detail = {{ detatil }}
+
+            let detail = {{detail}}
+
             $.ajax({
                 type: "GET",
                 url: `/detail/ripple?detail=${detail}`,
                 data: {},
                 success: function (response) {
-                    console.log(response)
                     let rows = response['result']
+                    for (let i = 0; i < rows.length; i++){
 
-                    let ripple = rows['desc']
+                    let id = rows[i]['id']
+                    let ripple = rows[i]['desc']
 
                     let temp_html =
                         `<div class="card text-white bg-secondary mb-3">
-                                <div class="card-header">id</div>
+                                <div class="card-header">${id}</div>
                                 <div class="card-body">
                                     <p class="card-text">${ripple}</p>
                                 </div>
                             </div>`
-                    $('#ripple-box').append(temp_html)
+
+                        $('#ripple-box').append(temp_html)
+                    }
                 }
             });
         }
 
-         function save_ripple() {
+        // 상세페이지에서 단 댓글을 저장
+        function save_ripple() {
             let desc = $('#ripple').val()
-             let detail = {{detail}}
+            let detail = {{detail}}
 
-
-            //이곳에서 로그인한 사용자의 닉네임을 받아와야함!
             $.ajax({
                 type: 'POST',
                 url: `/detail/ripple?detail=${detail}`,
-                data: {ripple_give: desc},
+                data: {
+                    ripple_give: desc,
+                },
                 success: function (response) {
                     window.location.reload()
                 }
@@ -186,12 +186,7 @@
             <button onclick="save_ripple()" class="button is-primary">작성하기</button>
         </div>
         <div class="comments" id="ripple-box">
-            <div class="card text-white bg-secondary mb-3">
-                <div class="card-header">id</div>
-                <div class="card-body">
-                    <p class="card-text">좋은 노래 추천해 주셔서 감사해요!</p>
-                </div>
-            </div>
+
         </div>
 
     </center>
