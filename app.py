@@ -226,6 +226,7 @@ def sign_in():
 @app.route('/detail/info', methods=['GET'])
 def song_info():
     detail = request.args.get('detail')
+    print(detail)
     content = db.contents.find_one({'index': int(detail)}, {'_id': False})
     return jsonify({'result': content})
 
@@ -234,8 +235,16 @@ def song_info():
 @app.route('/detail/ripple', methods=['GET'])
 def ripple_get():
     detail = request.args.get('detail')
+
     content = list(db.info.find({'index': detail}, {'_id': False}))
     return jsonify({'result': content})
+
+# 상세페이지 댓글 삭제
+@app.route('/detail/delete_ripple', methods=['POST'])
+def ripple_delete():
+    index_receive = request.form['index_give']
+    db.contents.delete_one({'ripple_index': int(index_receive)})
+    return jsonify({'msg' : "삭제 완료!"})
 
 
 # 상세페이지에서 단 댓글을 저장
@@ -244,6 +253,11 @@ def save_ripple():
     detail = request.args.get('detail')
     ripple_receive = request.form['ripple_give']
 
+    ripple_idx = db.info.find_one({'name':'ripple_index'}, {'_id': False})
+
+    ripple_idx = ripple_idx['index'] +1
+    db.info.update_one({'name': 'ripple_index'}, {'$set': {'index': ripple_idx}})
+
     token_receive = request.cookies.get('mytoken')
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
 
@@ -251,6 +265,7 @@ def save_ripple():
         'index': detail,
         'desc': ripple_receive,
         'id': payload['id'],
+        'ripple_index':ripple_idx
     }
     db.info.insert_one(doc)
     return jsonify({'msg': '작성 완료!'})

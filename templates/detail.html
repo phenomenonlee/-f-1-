@@ -73,6 +73,37 @@
         .button {
             width: 80px;
         }
+        .ripple_box{
+            display :flex;
+            justify-content: space-between;
+
+        }
+        .nickname{
+
+            color: white;
+
+        }
+        .nickBorder{
+            border-bottom-style: solid;
+            border-width: 2px;
+            border-bottom-color: black;
+
+        }
+        .ripple_del_btn{
+            width: 20px;
+            height: 20px;
+
+            margin: 5px 5px 0 0;
+
+        }
+        .del_X{
+            width: 10px;
+            height: 10px;
+            position: relative;
+            right: 5px;
+            bottom: 8px;
+        }
+
     </style>
     <script>
         $(document).ready(function () {
@@ -103,17 +134,28 @@
                 }
             })
         }
-
+        function delete_ripple(index){
+             $.ajax({
+                 type: "POST",
+                 url: `/detail/delete_ripple}`,
+                 data: {'index_give': index},
+                 success: function (response) {
+                     window.location.reload()
+                     alert(response['msg'])
+                 }
+             })
+        }
 
         //노래 정보 가지고 오기
         function detail_info() {
-            var detail = {{detail}}
+            let detail = {{detail}}
             $.ajax({
                 type: "GET",
-                url: '/detail/info?detail='+{detail},
+                url: `/detail/info?detail=${detail}`,
                 data: {},
                 success: function (response) {
                     let rows = response['result']
+
 
                     let id = rows['id']
                     let title = rows['title']
@@ -135,6 +177,7 @@
                             <footer class="blockquote-footer"> <cite title="Source Title">${desc}</cite></footer>
                           </blockquote>
                         </div>
+
                       </div>
                     </div>`
                     $('#cards-box').append(temp_html)
@@ -155,13 +198,17 @@
 
                     let id = rows[i]['id']
                     let ripple = rows[i]['desc']
-
+                    let ripple_index = rows[i]['ripple_index']
                     let temp_html =
                         `<div class="card text-white bg-secondary mb-3">
-                                <div class="card-header">${id}</div>
+                                <div class = 'ripple_box nickBorder'  >
+                                <div class="card-header  nickname" style="color : white" >${id}</div>
+                                <button type="button"  onclick="delete_ripple(${ripple_index})" class="btn btn-danger ripple_del_btn"><span class="del_X">X</span></button>
+                                </div>
                                 <div class="card-body">
                                     <p class="card-text">${ripple}</p>
                                 </div>
+
                             </div>`
 
                         $('#ripple-box').append(temp_html)
