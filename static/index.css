@@ -92,7 +92,7 @@
     height: 10px;
 }
 .more-contents-button{
-    width: 1000px;
+    max-width: 1000px;
     margin: 30px auto 0 auto;
 
 

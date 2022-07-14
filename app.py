@@ -22,58 +22,6 @@ def main():
 
 
 
-@app.route("/delete", methods=["POST"])
-def delete_contents():
-    idx = request.form['button_give']
-    db.contents.delete_one({'index': int(idx)})
-    return jsonify({'msg': '게시물이 삭제되었습니다.'})
-
-
-@app.route("/", methods=["POST"])
-def insert_contents_post():
-    token_receive = request.cookies.get('mytoken')
-
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
-        # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
-        user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
-        idx_list = list(db.contents.find({}, {'_id': False}))
-        idx = len(idx_list) + 1
-
-        artist_receive = request.form['artist_give']
-        title_receive = request.form['title_give']
-        desc_receive = request.form['desc_give']
-        url_receive = request.form['url_give']
-        doc = {'index': idx,
-               'artist': artist_receive,
-               'title': title_receive,
-               'desc': desc_receive,
-               'url': url_receive,
-               'id': user_id['id']}
-        db.contents.insert_one(doc)
-
-        return jsonify({'success': 'true', 'msg': '공유되었습니다.'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):  # 확인할 부분
-        return jsonify({'success': 'false', 'msg': '로그인이 필요합니다!.'})
-
-
-@app.route("/con", methods=["GET"])
-def insert_contents_get():
-    token_receive = request.cookies.get('mytoken')
-    contents = list(db.contents.find({}, {'_id': False}))
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
-        # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
-
-        user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
-        id = user_id['id']
-
-        return jsonify({'contents': contents, 'id': id})
-    except:
-        return jsonify({'contents': contents})
-
-
-
 @app.route('/login')
 def login():
     return render_template('login.html')
@@ -104,6 +52,7 @@ def mypage_info():
     return jsonify({'contents': all_users})
 
 #기능 구현
+#즐겨찾기 등록하기
 @app.route("/favorite", methods=["POST"])
 def favorite_contents():
     idx = request.form['index_give']
@@ -116,6 +65,7 @@ def favorite_contents():
     db.users.update_one({'id':id},{'$push':{'favorite_list':{'favorite':idx}}})
     return jsonify({'msg':'즐겨찾기 등록 완료!.'})
 
+#즐겨찾기를 삭제하기
 @app.route("/favorite_del", methods=["POST"])
 def favorite_contents_delete():
     idx = request.form['index_give']
@@ -126,14 +76,19 @@ def favorite_contents_delete():
     id = user_id['id']
 
     db.users.update_one({'id':id},{'$pull':{'favorite_list':{'favorite':idx}}})
+
     return jsonify({'msg':'즐겨찾기 삭제 완료!.'})
 
+#로그인을 한 사용자가 자신의 게시물 삭제
 @app.route("/delete", methods=["POST"])
 def delete_contents():
     idx = request.form['button_give']
     db.contents.delete_one({'index': int(idx)})
+
+
     return jsonify({'msg':'게시물이 삭제되었습니다.'})
 
+#로그인을 한 상태라면 노래 공유하기 버튼을 클릭해 공유하기
 @app.route("/", methods=["POST"])
 def insert_contents_post():
     token_receive = request.cookies.get('mytoken')
@@ -142,8 +97,10 @@ def insert_contents_post():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
         # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
         user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
-        idx_list = list(db.contents.find({}, {'_id': False}))
-        idx = len(idx_list) + 1
+
+        idx = db.contents.find_one({'name':'con_idx'})
+        idx = int(idx['con_index'])+1
+        db.contents.update_one({'name': 'con_idx'}, {'$set': {'con_index': idx}})
 
         artist_receive = request.form['artist_give']
         title_receive = request.form['title_give']
@@ -165,7 +122,7 @@ def insert_contents_post():
         return jsonify({'success': 'false' ,'msg': '로그인이 필요합니다!.'})
 
 
-
+#데이터 베이스에 저장되어 있는 게시물들 가져오기
 @app.route("/con", methods=["GET"])
 def insert_contents_get():
 

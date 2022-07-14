@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="https://kit.fontawesome.com/190c91686f.js" crossorigin="anonymous"></script>
     <script>
-        var idx = 0;
+
 
         $(document).ready(function () {
             showContents()
@@ -76,13 +76,8 @@
             })
         }
 
-
-
-
-
-
-
         function showContents() {
+            var idx = 0;
             $.ajax({
                 type: 'GET',
                 url: '/con',
@@ -102,6 +97,9 @@
                     let favorite_num = 0
                     let j = 0
                     for (let i = rows.length - idx - 1; ; i--) {
+                        if(rows[i]['artist'] == undefined){
+                            continue
+                        }
                         if (i <= -1) {
                             hide_more_content_button()
                             break
@@ -215,7 +213,7 @@
                     }
                 }
             });
-        }
+        } //페이지 로딩시 게시물 출력
 
 
         function share() {

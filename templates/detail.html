@@ -82,10 +82,10 @@
 
         //노래 정보 가지고 오기
         function detail_info() {
-            let detail = {{detail}}
+            var detail = {{detail}}
             $.ajax({
                 type: "GET",
-                url: `/detail/info?detail=${detail}`,
+                url: '/detail/info?detail='+{detail},
                 data: {},
                 success: function (response) {
                     let rows = response['result']
