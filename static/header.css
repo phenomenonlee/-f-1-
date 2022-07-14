@@ -33,11 +33,16 @@
     padding: 5px;
     color: black;
     margin-bottom: 40px;
+    color: inherit;
+}
+
+.main:hover {
+    color: inherit;
 }
 
 #login,
 #my,
-#logout{
+#logout {
     margin-right: 10px;
 }
 

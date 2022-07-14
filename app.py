@@ -21,6 +21,7 @@ def main():
     return render_template('index.html')
 
 
+
 @app.route('/login')
 def login():
     return render_template('login.html')
@@ -51,6 +52,7 @@ def mypage_info():
     return jsonify({'contents': all_users})
 
 #기능 구현
+#즐겨찾기 등록하기
 @app.route("/favorite", methods=["POST"])
 def favorite_contents():
     idx = request.form['index_give']
@@ -63,6 +65,7 @@ def favorite_contents():
     db.users.update_one({'id':id},{'$push':{'favorite_list':{'favorite':idx}}})
     return jsonify({'msg':'즐겨찾기 등록 완료!.'})
 
+#즐겨찾기를 삭제하기
 @app.route("/favorite_del", methods=["POST"])
 def favorite_contents_delete():
     idx = request.form['index_give']
@@ -73,14 +76,19 @@ def favorite_contents_delete():
     id = user_id['id']
 
     db.users.update_one({'id':id},{'$pull':{'favorite_list':{'favorite':idx}}})
+
     return jsonify({'msg':'즐겨찾기 삭제 완료!.'})
 
+#로그인을 한 사용자가 자신의 게시물 삭제
 @app.route("/delete", methods=["POST"])
 def delete_contents():
     idx = request.form['button_give']
     db.contents.delete_one({'index': int(idx)})
+
+
     return jsonify({'msg':'게시물이 삭제되었습니다.'})
 
+#로그인을 한 상태라면 노래 공유하기 버튼을 클릭해 공유하기
 @app.route("/", methods=["POST"])
 def insert_contents_post():
     token_receive = request.cookies.get('mytoken')
@@ -89,8 +97,10 @@ def insert_contents_post():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
         # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
         user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
-        idx_list = list(db.contents.find({}, {'_id': False}))
-        idx = len(idx_list) + 1
+
+        idx = db.contentsNum.find_one({'name':'con_idx'})
+        idx = int(idx['con_index'])+1
+        db.contentsNum.update_one({'name': 'con_idx'}, {'$set': {'con_index': idx}})
 
         artist_receive = request.form['artist_give']
         title_receive = request.form['title_give']
@@ -112,7 +122,7 @@ def insert_contents_post():
         return jsonify({'success': 'false' ,'msg': '로그인이 필요합니다!.'})
 
 
-
+#데이터 베이스에 저장되어 있는 게시물들 가져오기
 @app.route("/con", methods=["GET"])
 def insert_contents_get():
 
@@ -198,7 +208,7 @@ def sign_in():
     if result is not None:
         payload = {
             'id': username_receive,
-            'exp': datetime.utcnow() + timedelta(seconds=60*60*24)  # 로그인 24시간 유지
+            'exp': datetime.utcnow() + timedelta(seconds=60*60)  # 로그인 24시간 유지
         }
 
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
@@ -216,6 +226,7 @@ def sign_in():
 @app.route('/detail/info', methods=['GET'])
 def song_info():
     detail = request.args.get('detail')
+    print(detail)
     content = db.contents.find_one({'index': int(detail)}, {'_id': False})
     return jsonify({'result': content})
 
@@ -224,8 +235,16 @@ def song_info():
 @app.route('/detail/ripple', methods=['GET'])
 def ripple_get():
     detail = request.args.get('detail')
+
     content = list(db.info.find({'index': detail}, {'_id': False}))
     return jsonify({'result': content})
+
+# 상세페이지 댓글 삭제
+@app.route('/detail/delete_ripple', methods=['POST'])
+def ripple_delete():
+    index_receive = request.form['index_give']
+    db.contents.delete_one({'ripple_index': int(index_receive)})
+    return jsonify({'msg' : "삭제 완료!"})
 
 
 # 상세페이지에서 단 댓글을 저장
@@ -234,6 +253,11 @@ def save_ripple():
     detail = request.args.get('detail')
     ripple_receive = request.form['ripple_give']
 
+    ripple_idx = db.info.find_one({'name':'ripple_index'}, {'_id': False})
+
+    ripple_idx = ripple_idx['index'] +1
+    db.info.update_one({'name': 'ripple_index'}, {'$set': {'index': ripple_idx}})
+
     token_receive = request.cookies.get('mytoken')
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
 
@@ -241,6 +265,7 @@ def save_ripple():
         'index': detail,
         'desc': ripple_receive,
         'id': payload['id'],
+        'ripple_index':ripple_idx
     }
     db.info.insert_one(doc)
     return jsonify({'msg': '작성 완료!'})
