@@ -19,11 +19,14 @@ db = client.dbsparta
 @app.route("/")
 def main():
     return render_template('index.html')
+
+
 @app.route("/delete", methods=["POST"])
 def delete_contents():
     idx = request.form['button_give']
     db.contents.delete_one({'index': int(idx)})
-    return jsonify({'msg':'게시물이 삭제되었습니다.'})
+    return jsonify({'msg': '게시물이 삭제되었습니다.'})
+
 
 @app.route("/", methods=["POST"])
 def insert_contents_post():
@@ -48,16 +51,13 @@ def insert_contents_post():
                'id': user_id['id']}
         db.contents.insert_one(doc)
 
-
-        return jsonify({'success': 'true' ,'msg': '공유되었습니다.'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError): #확인할 부분
-        return jsonify({'success': 'false' ,'msg': '로그인이 필요합니다!.'})
-
+        return jsonify({'success': 'true', 'msg': '공유되었습니다.'})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):  # 확인할 부분
+        return jsonify({'success': 'false', 'msg': '로그인이 필요합니다!.'})
 
 
 @app.route("/con", methods=["GET"])
 def insert_contents_get():
-
     token_receive = request.cookies.get('mytoken')
     contents = list(db.contents.find({}, {'_id': False}))
     try:
@@ -67,10 +67,9 @@ def insert_contents_get():
         user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
         id = user_id['id']
 
-        return jsonify({'contents': contents, 'id':id})
+        return jsonify({'contents': contents, 'id': id})
     except:
         return jsonify({'contents': contents})
-
 
 
 @app.route('/login')
@@ -114,23 +113,7 @@ def footer():
     return render_template('footer.html')
 
 
-@app.route('/detail/info', methods=['GET'])
-def detail_post():
-    detail = request.args.get('detail')
-    content = db.contents.find_one({'index': int(detail)}, {'_id': False})
-    return jsonify({'result': content})
-
-@app.route('/detail' , methods=['POST'])
-def get_detail_page():
-    index = request.form['index_give']
-    print(index)
-    user = db.contents.find_one({'index':int(index)})
-
-    print(user)
-    return jsonify({'ripple':user})
-
 # login&signup
-
 @app.route('/sign_up/check_dup', methods=['POST'])
 def check_dup():
     username_receive = request.form['username_give']
@@ -174,36 +157,42 @@ def sign_in():
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
-@app.route("/info", methods=["POST"])
-def ripple_post():
+# 상세페이지
+
+
+# 상세페이지에서 노래 정보 가지고 오기
+@app.route('/detail/info', methods=['GET'])
+def song_info():
+    detail = request.args.get('detail')
+    content = db.contents.find_one({'index': int(detail)}, {'_id': False})
+
+    return jsonify({'result': content})
+
+
+# 상세페에지에서 단 댓글을 가지고 오기
+@app.route('/detail/ripple', methods=['GET'])
+def ripple_get():
+    detail = request.args.get('detail')
+    content = list(db.info.find({'index': detail}, {'_id': False}))
+    return jsonify({'result': content})
+
+
+# 상세페이지에서 단 댓글을 저장
+@app.route("/detail/ripple", methods=["POST"])
+def save_ripple():
+    detail = request.args.get('detail')
     ripple_receive = request.form['ripple_give']
+
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
     doc = {
-        'ripple': ripple_receive,
+        'index': detail,
+        'desc': ripple_receive,
+        'id': payload['id'],
     }
     db.info.insert_one(doc)
-
     return jsonify({'msg': '작성 완료!'})
-
-
-@app.route('/info', methods=["GET"])
-def ripple_get():
-    ripple_list = list(db.info.find({}, {'_id': False}))
-    return jsonify({'ripple': ripple_list})
-
-
-@app.route("/detail/ripple", methods=["POST"])
-def insert_info_post():
-    ripple_receive = request.form['ripple_give']
-    detail = request.args.get('detail')
-    print(detail)
-    doc = {'index': detail,
-           'desc': ripple_receive,
-           }
-    db.info.insert_one(doc)
-    return jsonify({'msg': '작성 완료!'})
-
-    # except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):  # 확인할 부분
-    #     return render_template('login.html', msg='로그인이 필요합니다.')
 
 
 if __name__ == '__main__':
