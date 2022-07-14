@@ -98,9 +98,9 @@ def insert_contents_post():
         # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
         user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
 
-        idx = db.contents.find_one({'name':'con_idx'})
+        idx = db.contentsNum.find_one({'name':'con_idx'})
         idx = int(idx['con_index'])+1
-        db.contents.update_one({'name': 'con_idx'}, {'$set': {'con_index': idx}})
+        db.contentsNum.update_one({'name': 'con_idx'}, {'$set': {'con_index': idx}})
 
         artist_receive = request.form['artist_give']
         title_receive = request.form['title_give']
@@ -208,7 +208,7 @@ def sign_in():
     if result is not None:
         payload = {
             'id': username_receive,
-            'exp': datetime.utcnow() + timedelta(seconds=10)  # 로그인 24시간 유지
+            'exp': datetime.utcnow() + timedelta(seconds=60*60)  # 로그인 24시간 유지
         }
 
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')

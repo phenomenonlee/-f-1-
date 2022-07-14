@@ -96,8 +96,10 @@
             })
         }
 
+
+        var idx = 0;
         function showContents() {
-            var idx = 0;
+
             $.ajax({
                 type: 'GET',
                 url: '/con',
@@ -117,9 +119,7 @@
                     let favorite_num = 0
                     let j = 0
                     for (let i = rows.length - idx - 1; ; i--) {
-                        if(rows[i]['artist'] == undefined){
-                            continue
-                        }
+                        console.log(i,  "  " , j)
                         if (i <= -1) {
                             hide_more_content_button()
                             break
