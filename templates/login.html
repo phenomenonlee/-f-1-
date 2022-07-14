@@ -22,11 +22,25 @@
         });
 
         function check_cookie() {
-            let cookie = $.cookie('mytoken')
-            if (cookie) {
-                window.location.href = '/';
-                alert('로그인이 이미 되어 있습니다.')
-            }
+            $.ajax({
+                type: "GET",
+                url: "/cookie",
+                data: {},
+                success: function (response) {
+                    let cookie = response['cookie']
+                    if (cookie == "정상") {
+                        window.location.href = '/';
+                        alert('이미 로그인 되어있습니다.')
+                        return
+                    }
+                    if (cookie == "만료") {
+                        $.removeCookie('mytoken');
+                        window.location.href = '/login';
+                        alert('로그인 기한이 만료되었습니다.')
+                        return
+                    }
+                }
+            })
         }
 
         function sign_in() {

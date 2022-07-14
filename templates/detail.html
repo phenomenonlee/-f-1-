@@ -80,11 +80,28 @@
         });
 
         function check_cookie() {
-            let cookie = $.cookie('mytoken')
-            if (!cookie) {
-                window.location.href = '/login';
-                alert('로그인이 필요합니다!.')
-            }
+            $.ajax({
+                type: "GET",
+                url: "/cookie",
+                data: {},
+                success: function (response) {
+                    let cookie = response['cookie']
+                    if (cookie == "정상") {
+                        return
+                    }
+                    if (cookie == "만료") {
+                        $.removeCookie('mytoken');
+                        window.location.href = '/login';
+                        alert('로그인 기한이 만료되었습니다.')
+                        return
+                    }
+                    if (cookie == "없음") {
+                        window.location.href = '/login';
+                        alert('로그인이 필요합니다!.')
+                        return
+                    }
+                }
+            })
         }
 
 
