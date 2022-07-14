@@ -52,8 +52,9 @@
 
                 data: {'button_give': button_index},
                 success: function (response) {
-                    alert(response['msg'])
                     window.location.reload()
+                    alert(response['msg'])
+
                 }
             })
 
@@ -71,6 +72,7 @@
                 success: function (response) {
                     console.log('즐겨찾기')
                     alert(response['msg'])
+                     window.location.reload()
                     return
                 },
             })
@@ -92,6 +94,7 @@
                 success: function (response) {
                     console.log('즐겨찾기')
                     alert(response['msg'])
+                    window.location.reload()
 
                 },
             })
