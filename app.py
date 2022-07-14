@@ -21,6 +21,7 @@ def main():
     return render_template('index.html')
 
 
+
 @app.route("/delete", methods=["POST"])
 def delete_contents():
     idx = request.form['button_give']
@@ -72,6 +73,7 @@ def insert_contents_get():
         return jsonify({'contents': contents})
 
 
+
 @app.route('/login')
 def login():
     return render_template('login.html')
@@ -101,6 +103,91 @@ def mypage_info():
     all_users = list(db.contents.find({"id": payload['id']}, {'_id': False}))
     return jsonify({'contents': all_users})
 
+#기능 구현
+@app.route("/favorite", methods=["POST"])
+def favorite_contents():
+    idx = request.form['index_give']
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
+        # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
+    user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
+    id = user_id['id']
+
+    db.users.update_one({'id':id},{'$push':{'favorite_list':{'favorite':idx}}})
+    return jsonify({'msg':'즐겨찾기 등록 완료!.'})
+
+@app.route("/favorite_del", methods=["POST"])
+def favorite_contents_delete():
+    idx = request.form['index_give']
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
+        # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
+    user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
+    id = user_id['id']
+
+    db.users.update_one({'id':id},{'$pull':{'favorite_list':{'favorite':idx}}})
+    return jsonify({'msg':'즐겨찾기 삭제 완료!.'})
+
+@app.route("/delete", methods=["POST"])
+def delete_contents():
+    idx = request.form['button_give']
+    db.contents.delete_one({'index': int(idx)})
+    return jsonify({'msg':'게시물이 삭제되었습니다.'})
+
+@app.route("/", methods=["POST"])
+def insert_contents_post():
+    token_receive = request.cookies.get('mytoken')
+
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
+        # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
+        user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
+        idx_list = list(db.contents.find({}, {'_id': False}))
+        idx = len(idx_list) + 1
+
+        artist_receive = request.form['artist_give']
+        title_receive = request.form['title_give']
+        desc_receive = request.form['desc_give']
+        url_receive = request.form['url_give']
+        doc = {'index': idx,
+               'artist': artist_receive,
+               'title': title_receive,
+               'desc': desc_receive,
+               'url': url_receive,
+               'id': user_id['id'],
+
+               }
+        db.contents.insert_one(doc)
+
+
+        return jsonify({'success': 'true' ,'msg': '공유되었습니다.'})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError): #확인할 부분
+        return jsonify({'success': 'false' ,'msg': '로그인이 필요합니다!.'})
+
+
+
+@app.route("/con", methods=["GET"])
+def insert_contents_get():
+
+    token_receive = request.cookies.get('mytoken')
+    contents = list(db.contents.find({}, {'_id': False}))
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
+        # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
+
+        user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
+        id = user_id['id']
+        favorite_ = db.users.find_one({"id" : id}, {'_id':False})
+
+        favor = favorite_['favorite_list']
+
+        favor_result = []
+        for f in favor:
+            favor_result.append(int(f['favorite']))
+
+        return jsonify({'contents': contents, 'id':id, 'favorite_list' : favor_result})
+    except:
+        return jsonify({'contents': contents})
 
 # 헤더 및 푸터
 @app.route('/header')
@@ -146,6 +233,7 @@ def sign_up():
     doc = {
         "id": username_receive,  # 아이디
         "pw": password_hash,  # 비밀번호
+        'favorite_list' : list()
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})

@@ -111,7 +111,7 @@
 
 
     max-width: 800px;
-
+    top: 200px;
    /*display: flex; !*가운데로 옮기는 애들 *!*/
    /* flex-direction: column;*/
    /* justify-content: center;*/
@@ -126,5 +126,6 @@
     background-color: aliceblue;
     border-color: white;
     box-shadow: white;
+
 }
 
