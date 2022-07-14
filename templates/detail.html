@@ -144,11 +144,7 @@
 
         // 상세페이지에 댓글 보여주기
         function show_ripple() {
-
-            let detail = {{ detatil }}
-
             let detail = {{detail}}
-
             $.ajax({
                 type: "GET",
                 url: `/detail/ripple?detail=${detail}`,
