@@ -1,3 +1,4 @@
+
 #mypage_info_box_box {
     display: flex;
     justify-content: center;
@@ -22,4 +23,5 @@
     -webkit-line-clamp: 3;
     overflow: hidden;
 }
+
 
