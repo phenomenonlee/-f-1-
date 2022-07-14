@@ -76,8 +76,16 @@
     </style>
     <script>
         $(document).ready(function () {
-            detail_info(), show_ripple()
+            detail_info(), show_ripple(), check_cookie()
         });
+
+        function check_cookie() {
+            let cookie = $.cookie('mytoken')
+            if (!cookie) {
+                window.location.href = '/login';
+                alert('로그인이 필요합니다!.')
+            }
+        }
 
 
         //노래 정보 가지고 오기
@@ -161,6 +169,11 @@
                 }
             });
         };
+
+        function logout() {
+            $.removeCookie('mytoken');
+            window.location.href = '/'
+        }
 
     </script>
 
