@@ -18,8 +18,28 @@
         var idx = 0;
 
         $(document).ready(function () {
-            showContents()
+            showContents(),check_cookie()
         });
+
+        function check_cookie() {
+            $.ajax({
+                type: "GET",
+                url: "/cookie",
+                data: {},
+                success: function (response) {
+                    let cookie = response['cookie']
+                    if (cookie == "정상") {
+                        return
+                    }
+                    if (cookie == "만료") {
+                        $.removeCookie('mytoken');
+                        window.location.href = '/login';
+                        alert('로그인 기한이 만료되었습니다.')
+                        return
+                    }
+                }
+            })
+        }
 
         function hide_more_content_button() {
             $('#more_content-button').hide()

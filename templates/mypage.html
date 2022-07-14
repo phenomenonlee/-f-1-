@@ -16,8 +16,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script>
         $(document).ready(function () {
-            show_mypage()
+            show_mypage(), check_cookie()
         });
+
+        function check_cookie() {
+            $.ajax({
+                type: "GET",
+                url: "/cookie",
+                data: {},
+                success: function (response) {
+                    let cookie = response['cookie']
+                    if (cookie == "정상") {
+                        return
+                    }
+                    if (cookie == "만료") {
+                        $.removeCookie('mytoken');
+                        window.location.href = '/login';
+                        alert('로그인 기한이 만료되었습니다.')
+                        return
+                    }
+                    if (cookie == "없음") {
+                        window.location.href = '/login';
+                        alert('로그인이 필요합니다!.')
+                        return
+                    }
+                }
+            })
+        }
 
         function show_mypage() {
             $.ajax({
@@ -31,21 +56,32 @@
                         let artist = rows[i]['artist']
                         let desc = rows[i]['desc']
                         let url = rows[i]['url']
+                        let index = rows[i]['index']
+
                         if (url == "") {
                             url = "http://image.genie.co.kr/Y/IMAGE/IMG_ALBUM/080/969/543/80969543_1500880366913_1_600x600.JPG"
                         }
                         let temp_html =
+
                             `<div class="card" style="width: 250px;">
-                                <img src="${url}" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${title} : ${artist}</h5>
-                                        <p class="card-text"> ${desc}</p>
-                                    </div>
+                                <a href="/detail?index=${index}">
+                                    <img src="${url}" class="card-img-top">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">${title} : ${artist}</h5>
+                                    <p class="card-text"> ${desc}</p>
+                                </div>
                             </div>`
                         $('#mypage_info_box').append(temp_html)
                     }
                 }
             })
+        }
+
+
+        function logout() {
+            $.removeCookie('mytoken');
+            window.location.href = '/'
         }
     </script>
 
