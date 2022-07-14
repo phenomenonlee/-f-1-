@@ -242,8 +242,9 @@ def ripple_get():
 # 상세페이지 댓글 삭제
 @app.route('/detail/delete_ripple', methods=['POST'])
 def ripple_delete():
-    index_receive = request.form['index_give']
-    db.contents.delete_one({'ripple_index': int(index_receive)})
+    index_receive = int(request.form['index_give'])
+
+    db.info.delete_one({'ripple_index': index_receive})
     return jsonify({'msg' : "삭제 완료!"})
 
 

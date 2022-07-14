@@ -135,9 +135,10 @@
             })
         }
         function delete_ripple(index){
+            console.log(index)
              $.ajax({
                  type: "POST",
-                 url: `/detail/delete_ripple}`,
+                 url: `/detail/delete_ripple`,
                  data: {'index_give': index},
                  success: function (response) {
                      window.location.reload()
@@ -198,7 +199,12 @@
 
                     let id = rows[i]['id']
                     let ripple = rows[i]['desc']
-                    let ripple_index = rows[i]['ripple_index']
+                    if(rows[i]['ripple_index'] == undefined){
+                        continue
+                    }
+                        let ripple_index = rows[i]['ripple_index']
+
+
                     let temp_html =
                         `<div class="card text-white bg-secondary mb-3">
                                 <div class = 'ripple_box nickBorder'  >
