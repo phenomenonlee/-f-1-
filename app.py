@@ -157,6 +157,23 @@ def footer():
     return render_template('footer.html')
 
 
+# 여기부터 기능들
+
+
+# 쿠키 체크
+@app.route('/cookie', methods=['GET'])
+def cookie_check():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        return jsonify({'cookie': "정상"})
+    except jwt.ExpiredSignatureError:
+        return jsonify({'cookie': '만료'})
+    except jwt.exceptions.DecodeError:
+        return jsonify({'cookie': '없음'})
+
+
+
 # login&signup
 @app.route('/sign_up/check_dup', methods=['POST'])
 def check_dup():
@@ -191,7 +208,7 @@ def sign_in():
     if result is not None:
         payload = {
             'id': username_receive,
-            'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+            'exp': datetime.utcnow() + timedelta(seconds=10)  # 로그인 24시간 유지
         }
 
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
@@ -210,7 +227,6 @@ def sign_in():
 def song_info():
     detail = request.args.get('detail')
     content = db.contents.find_one({'index': int(detail)}, {'_id': False})
-
     return jsonify({'result': content})
 
 
@@ -241,4 +257,4 @@ def save_ripple():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5001, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)

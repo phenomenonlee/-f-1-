@@ -76,8 +76,33 @@
     </style>
     <script>
         $(document).ready(function () {
-            detail_info(), show_ripple()
+            detail_info(), show_ripple(), check_cookie()
         });
+
+        function check_cookie() {
+            $.ajax({
+                type: "GET",
+                url: "/cookie",
+                data: {},
+                success: function (response) {
+                    let cookie = response['cookie']
+                    if (cookie == "정상") {
+                        return
+                    }
+                    if (cookie == "만료") {
+                        $.removeCookie('mytoken');
+                        window.location.href = '/login';
+                        alert('로그인 기한이 만료되었습니다.')
+                        return
+                    }
+                    if (cookie == "없음") {
+                        window.location.href = '/login';
+                        alert('로그인이 필요합니다!.')
+                        return
+                    }
+                }
+            })
+        }
 
 
         //노래 정보 가지고 오기
@@ -119,11 +144,7 @@
 
         // 상세페이지에 댓글 보여주기
         function show_ripple() {
-
-            let detail = {{ detatil }}
-
             let detail = {{detail}}
-
             $.ajax({
                 type: "GET",
                 url: `/detail/ripple?detail=${detail}`,
@@ -165,6 +186,11 @@
                 }
             });
         };
+
+        function logout() {
+            $.removeCookie('mytoken');
+            window.location.href = '/'
+        }
 
     </script>
 
