@@ -234,10 +234,18 @@ def song_info():
 # 상세페에지에서 단 댓글을 가지고 오기
 @app.route('/detail/ripple', methods=['GET'])
 def ripple_get():
+    token_receive = request.cookies.get('mytoken')
+
+
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
+    # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
+    user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
+    user_id = user_id['id']
+
     detail = request.args.get('detail')
 
     content = list(db.info.find({'index': detail}, {'_id': False}))
-    return jsonify({'result': content})
+    return jsonify({'result': content, 'id' : user_id})
 
 # 상세페이지 댓글 삭제
 @app.route('/detail/delete_ripple', methods=['POST'])

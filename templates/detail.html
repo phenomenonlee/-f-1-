@@ -196,16 +196,16 @@
                 success: function (response) {
                     let rows = response['result']
                     for (let i = 0; i < rows.length; i++){
-
+                    let user_id = response['id']
                     let id = rows[i]['id']
                     let ripple = rows[i]['desc']
                     if(rows[i]['ripple_index'] == undefined){
                         continue
                     }
                         let ripple_index = rows[i]['ripple_index']
-
-
-                    let temp_html =
+                     let temp_html
+                    if(user_id == id){
+                         temp_html =
                         `<div class="card text-white bg-secondary mb-3">
                                 <div class = 'ripple_box nickBorder'  >
                                 <div class="card-header  nickname" style="color : white" >${id}</div>
@@ -216,6 +216,20 @@
                                 </div>
 
                             </div>`
+                    }else{
+                          temp_html =
+                        `<div class="card text-white bg-secondary mb-3">
+                                <div class = 'ripple_box nickBorder'  >
+                                <div class="card-header  nickname" style="color : white" >${id}</div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">${ripple}</p>
+                                </div>
+
+                            </div>`
+                    }
+
+
 
                         $('#ripple-box').append(temp_html)
                     }
