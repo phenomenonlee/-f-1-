@@ -209,5 +209,20 @@ def ripple_get():
     return jsonify({'ripple': ripple_list})
 
 
+@app.route("/detail/ripple", methods=["POST"])
+def insert_info_post():
+    ripple_receive = request.form['ripple_give']
+    detail = request.args.get('detail')
+    print(detail)
+    doc = {'index': detail,
+           'desc': ripple_receive,
+           }
+    db.info.insert_one(doc)
+    return jsonify({'msg': '작성 완료!'})
+
+    # except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):  # 확인할 부분
+    #     return render_template('login.html', msg='로그인이 필요합니다.')
+
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)

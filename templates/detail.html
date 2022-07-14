@@ -76,20 +76,20 @@
         });
 
 
-        function save_ripple() {
-            let ripple = $('#ripple').val()
-            console.log(ripple)
-            $.ajax({
-                type: 'POST',
-                url: '/info',
-                data: {ripple_give: ripple},
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            });
-        }
-
+        // function save_ripple() {
+        //     let ripple = $('#ripple').val()
+        //     console.log(ripple)
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '/info',
+        //         data: {ripple_give: ripple},
+        //         success: function (response) {
+        //             alert(response['msg'])
+        //             window.location.reload()
+        //         }
+        //     });
+        // }
+// 리플 저장하기
         function detail_info() {
             let detail = {{detail}}
             $.ajax({
@@ -125,31 +125,45 @@
                 }
             });
         }
-
+//ripple 가져오기
         function show_ripple() {
             $.ajax({
                 type: "GET",
-                url: "/info",
+                url: `/detail/ripple?detail=${detail}`,
                 data: {},
                 success: function (response) {
                     console.log(response)
-                    let rows = response['ripple']
-                    for (let i = 0; i < rows.length; i++) {
-                        let ripple = rows[i]['ripple']
+                    let rows = response['result']
 
-                        let temp_html =
-                            `<div class="card text-white bg-secondary mb-3">
+                    let ripple = rows['desc']
+
+                    let temp_html =
+                        `<div class="card text-white bg-secondary mb-3">
                                 <div class="card-header">id</div>
                                 <div class="card-body">
-
                                     <p class="card-text">${ripple}</p>
                                 </div>
                             </div>`
-                        $('#ripple-box').append(temp_html)
-                    }
+                    $('#ripple-box').append(temp_html)
                 }
             });
         }
+
+         function save_ripple() {
+            let desc = $('#ripple').val()
+             let detail = {{detail}}
+
+
+            //이곳에서 로그인한 사용자의 닉네임을 받아와야함!
+            $.ajax({
+                type: 'POST',
+                url: `/detail/ripple?detail=${detail}`,
+                data: {ripple_give: desc},
+                success: function (response) {
+                    window.location.reload()
+                }
+            });
+        };
 
     </script>
 
