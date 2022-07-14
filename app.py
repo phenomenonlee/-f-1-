@@ -65,6 +65,18 @@ def favorite_contents():
     db.users.update_one({'id':id},{'$push':{'favorite_list':{'favorite':idx}}})
     return jsonify({'msg':'즐겨찾기 등록 완료!.'})
 
+@app.route("/favorite_del", methods=["POST"])
+def favorite_contents_delete():
+    idx = request.form['index_give']
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])  # {'id': 'gwonyeong', 'exp': 1657768562}
+        # {'id': 'gwonyeong', 'pw': 'eca38cd8f32bd60d105845c50acc190bbf0657df89253d3bf18438463f701d0d'}
+    user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
+    id = user_id['id']
+
+    db.users.update_one({'id':id},{'$pull':{'favorite_list':{'favorite':idx}}})
+    return jsonify({'msg':'즐겨찾기 삭제 완료!.'})
+
 @app.route("/delete", methods=["POST"])
 def delete_contents():
     idx = request.form['button_give']
@@ -115,8 +127,14 @@ def insert_contents_get():
         user_id = db.users.find_one({"id": payload["id"]}, {'_id': False})
         id = user_id['id']
         favorite_ = db.users.find_one({"id" : id}, {'_id':False})
+
         favor = favorite_['favorite_list']
-        return jsonify({'contents': contents, 'id':id, 'favorite_list' : favor})
+
+        favor_result = []
+        for f in favor:
+            favor_result.append(int(f['favorite']))
+
+        return jsonify({'contents': contents, 'id':id, 'favorite_list' : favor_result})
     except:
         return jsonify({'contents': contents})
 
